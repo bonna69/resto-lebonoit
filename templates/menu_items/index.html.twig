@@ -1,20 +1,109 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MenuItemsController!{% endblock %}
+{% block content %}
+<div class="container--xxl py-5">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="text-center wow fadeInUp">
+            <h5 class="section-title ff-secondary text-center text-primary fw-normal">
+                Goûtez ANNABA
+            </h5>
+        </div>
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+        <!-- Tab Navigation -->
+        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
+            <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom-0 mb-5">
+                <!-- Pâtes Tab -->
+                <li class="nav-item">
+                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3 active">
+                        <i class="fa-solid fa-plate-wheat"></i>
+                        <h6 class="mt-n2 mb-0">Pâtes</h6>
+                    </a>
+                </li>
+                <div class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ asset('path/to/pates-image.jpg') }}" alt="Pâtes">
+                        </div>
+                    </div>
+                </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+                <!-- Soupes Tab -->
+                <li class="nav-item">
+                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3">
+                        <i class="fa-solid fa-bowl-hot"></i>
+                        <h6 class="mt-n2 mb-0">Soupes</h6>
+                    </a>
+                </li>
+                <div class="tab-pane fade p-0">
+                    <div class="row g-4">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ asset('path/to/soupes-image.jpg') }}" alt="Soupes">
+                        </div>
+                    </div>
+                </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/mnt/c/Users/titou/OneDrive/Bureau/resto-lebonoit/src/Controller/MenuItemsController.php</code></li>
-        <li>Your template at <code>/mnt/c/Users/titou/OneDrive/Bureau/resto-lebonoit/templates/menu_items/index.html.twig</code></li>
-    </ul>
+                <!-- Salades Tab -->
+                <li class="nav-item">
+                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3">
+                        <i class="fa-solid fa-salad"></i>
+                        <h6 class="mt-n2 mb-0">Salades</h6>
+                    </a>
+                </li>
+                <div class="tab-pane fade p-0">
+                    <div class="row g-4">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ asset('path/to/salades-image.jpg') }}" alt="Salades">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Viandes Tab -->
+                <li class="nav-item">
+                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3">
+                        <i class="fa-solid fa-meat"></i>
+                        <h6 class="mt-n2 mb-0">Viandes</h6>
+                    </a>
+                </li>
+                <div class="tab-pane fade p-0">
+                    <div class="row g-4">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ asset('path/to/viandes-image.jpg') }}" alt="Viandes">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poissons Tab -->
+                <li class="nav-item">
+                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3">
+                        <i class="fa-solid fa-fish-fins"></i>
+                        <h6 class="mt-n2 mb-0">Poissons</h6>
+                    </a>
+                </li>
+                <div class="tab-pane fade p-0">
+                    <div class="row g-4">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ asset('path/to/poissons-image.jpg') }}" alt="Poissons">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desserts Tab -->
+                <li class="nav-item">
+                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3">
+                        <i class="fa-solid fa-cupcake"></i>
+                        <h6 class="mt-n2 mb-0">Desserts</h6>
+                    </a>
+                </li>
+                <div class="tab-pane fade p-0">
+                    <div class="row g-4">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ asset('path/to/desserts-image.jpg') }}" alt="Desserts">
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock %}

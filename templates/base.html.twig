@@ -3,36 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     <title>Le Bônoit</title>
 </head>
 <body>
     <header>
-        <a href="{{ path('homepage') }}">Le Bônoit</a>
-        <nav class="navbar">
+        {# <nav class="navbar">
             <ul>
                 <li><a href="{{ path('about') }}">À Propos</a></li>
                 <li><a href="{{ path('menu') }}">Menu</a></li>
                 <li><a href="{{ path('location') }}">Notre Local</a></li>
                 <li><a href="{{ path('contact') }}">Contact</a></li>
-                <li><a href="#" class="book-button" onclick="document.getElementById('reservationModal').style.display='block'">Réserver</a></li>
+                <li><a href="#" id="reservationButton" class="book-button">Réserver</a></li>
             </ul>
-        </nav>
+        </nav> #}
     </header>
     
     <main>
         {% block content %}{% endblock %}
     </main>
     
-    <div id="reservationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="document.getElementById('reservationModal').style.display='none'">&times;</span>
-            {{ form_start(reservationForm) }}
-            {{ form_widget(reservationForm) }}
-            {{ form_end(reservationForm) }}
-        </div>
-    </div>
-    
-    <script src="{{ asset('script.js') }}"></script>
+    <script src="{{ asset('assets/script.js') }}"></script>
 </body>
 </html>

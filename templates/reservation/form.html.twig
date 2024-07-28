@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    <title>Réservation</title>
+    <style>
+        .reservation-container {
+            background-color: #7A8633;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: auto;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .reservation-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .reservation-container button {
+            background-color: white;
+            color: #7A8633;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="reservation-container">
+            <h1>Alba</h1>
+            <p>Les tables réservées sont conservées pendant 15 minutes. Si vous êtes en retard, faites-le nous savoir.</p>
+            <form action="{{ path('reservation') }}" method="post">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+                <button type="submit">Réserver</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

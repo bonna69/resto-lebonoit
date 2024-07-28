@@ -2,17 +2,31 @@
 
 namespace App\Controller;
 
+use App\Form\ReservationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+
 
 class ReservationController extends AbstractController
 {
-    #[Route('/reservation', name: 'app_reservation')]
-    public function index(): Response
+    /**
+     * @Route("/reservation", name="reservation")
+     */
+    public function new(Request $request): Response
     {
-        return $this->render('reservation/index.html.twig', [
-            'controller_name' => 'ReservationController',
+        $form = $this->createForm(ReservationType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Process the form data here
+
+            return $this->redirectToRoute('success'); // Redirect after submission
+        }
+
+        return $this->render('reservation_form.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
