@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
@@ -29,8 +28,8 @@ class Reservation
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $time = null;
+    #[ORM\Column(length: 5)]  // Length 5 to accommodate HH:MM format
+    private ?string $time = null;
 
     #[ORM\Column]
     private ?int $number_of_persons = null;
@@ -103,12 +102,12 @@ class Reservation
         return $this;
     }
 
-    public function getTime(): ?\DateTimeInterface
+    public function getTime(): ?string
     {
         return $this->time;
     }
 
-    public function setTime(\DateTimeInterface $time): static
+    public function setTime(?string $time): static
     {
         $this->time = $time;
 
@@ -132,7 +131,7 @@ class Reservation
         return $this->special_requests;
     }
 
-    public function setSpecialRequests(string $special_requests): static
+    public function setSpecialRequests(?string $special_requests): static
     {
         $this->special_requests = $special_requests;
 

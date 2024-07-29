@@ -3,26 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {# <title>Le Bônoit</title> #}
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
-    <title>Le Bônoit</title>
 </head>
 <body>
-    <header>
-        {# <nav class="navbar">
-            <ul>
-                <li><a href="{{ path('about') }}">À Propos</a></li>
-                <li><a href="{{ path('menu') }}">Menu</a></li>
-                <li><a href="{{ path('location') }}">Notre Local</a></li>
-                <li><a href="{{ path('contact') }}">Contact</a></li>
-                <li><a href="#" id="reservationButton" class="book-button">Réserver</a></li>
-            </ul>
-        </nav> #}
-    </header>
-    
-    <main>
+<header>
+    {# <a href="#" class="logo"><span>L</span>e Bônoit</a> #}
+    <div class="menuToggle" onclick="toggleMenu()"></div>
+    <ul class="navbar">
+      <!-- Menu items here -->
+    </ul>
+    <div class="region-header">
+        <a href="#" class="map_button"></a>
+    </div> 
+</header>
+
+<main>
         {% block content %}{% endblock %}
     </main>
-    
-    <script src="{{ asset('assets/script.js') }}"></script>
+
+<a href="{{ path('reservation') }}" class="custom-button book_button"><span>R</span>eservation</a>
+
+<script>
+    function toggleMenu() {
+        const navbar = document.querySelector('.navbar');
+        navbar.classList.toggle('open');
+    }
+
+    const reservationBtn = document.querySelector(".book_button");
+
+    reservationBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = "{{ path('reservation') }}";
+    });
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+ 

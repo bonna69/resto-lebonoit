@@ -1,0 +1,75 @@
+<section id="avis">
+  <div class="titre">
+    <h2 class="titre-texte">Votre <span>A</span>vis</h2>
+    <p>Partagez votre expérience.</p>
+  </div>
+  <div class="contenu">
+    <form action="/reservation/avis" method="post">
+      <div class="form-group">
+        <label for="name">Nom:</label>
+        <input type="text" name="name" id="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date" required>
+      </div>
+      <div class="form-group">
+        <label for="time">Heure:</label>
+        <input type="time" name="time" id="time" required>
+      </div>
+      <div class="form-group">
+        <label for="guests">Nombre de personnes:</label>
+        <input type="number" name="guests" id="guests" min="1" required>
+      </div>
+      <div class="form-group">
+        <label for="ambiance">Ambiance:</label>
+        <select name="ambiance" id="ambiance" required>
+          <option value="">Choisissez l'ambiance</option>
+          <option value="1">Excellent</option>
+          <option value="2">Bon</option>
+          <option value="3">Médiocre</option>
+          <option value="4">Mauvais</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="service">Service:</label>
+        <select name="service" id="service" required>
+          <option value="">Choisissez le service</option>
+          <option value="1">Excellent</option>
+          <option value="2">Bon</option>
+          <option value="3">Médiocre</option>
+          <option value="4">Mauvais</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="cuisine">Cuisine:</label>
+        <select name="cuisine" id="cuisine" required>
+          <option value="">Choisissez la cuisine</option>
+          <option value="1">Excellent</option>
+          <option value="2">Bon</option>
+          <option value="3">Médiocre</option>
+          <option value="4">Mauvais</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="qualityPrice">Qualité/Prix:</label>
+        <select name="qualityPrice" id="qualityPrice" required>
+          <option value="">Choisissez la qualité/prix</option>
+          <option value="1">Excellent</option>
+          <option value="2">Bon</option>
+          <option value="3">Médiocre</option>
+          <option value="4">Mauvais</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="comment">Commentaires:</label>
+        <textarea name="comment" id="comment"></textarea>
+      </div>
+      <input type="submit" value="Envoyer">
+    </form>
+  </div>
+</section>

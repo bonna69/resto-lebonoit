@@ -122,26 +122,16 @@ header .cc-navbar li a:hover{
         .book_botton{
             font-size: 1em;
             color: #fff;
-            background-color: #2a4963;
+            background-color: #0dcc50;
             padding: 10px 20px;
             display: inline-block;
             margin-top: 20px;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 2px;
-           margin-left: 10px;
+            margin-left: 10px;
         }
-
-        .btn1:hover{
-             transition: ease-out;
-            background-color: #07b03a;
-        }
-
-        .book_botton:hover{
-            transition: ease-out;
-            background-color: #527088;}
-
-        section{
+section{
             padding: 100px;
         }
 
@@ -505,4 +495,108 @@ h2::first-letter{color:green}
     color: #000;
     text-decoration: none;
     cursor: pointer;
+  }
+  .navbar {
+    display: none;
+  }
+  
+  .navbar.active {
+    display: block;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .navbar {
+      display: flex;
+    }
+  
+    .menuToggle {
+      display: none;
+    }
+  }
+  .reservation-container {
+    background-color: #7e94a5;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+}
+.reservation-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.reservation-container button {
+    background-color: white;
+    color: #7A8633;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.custom-button {
+    font-size: 1em;
+    color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.5s;
+    margin-left: 10px;
+}
+
+.btn1:hover {
+    background-color: #07b03a;
+}
+
+.book_button:hover {
+    background-color: #07b03a;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.guest-selector {
+    text-align: left; /* Align the guest selector to the left */
+    margin-bottom: 20px;
+  }
+  
+  .guest-selector span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .guest-buttons {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .guest-buttons button {
+    background-color: #eee;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 0 0 calc(33.33% - 10px); /* Three buttons per row */
+    box-sizing: border-box;
+  }
+  
+  .guest-buttons button.active {
+    background-color: #448044;
+    color: white;
   }
