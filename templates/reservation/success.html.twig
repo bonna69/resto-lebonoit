@@ -1,16 +1,17 @@
 {# templates/reservation/success.html.twig #}
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Réservation Réussie</title>
-</head>
-<body>
-    <div class="container">
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservation Réussie{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/success.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section class="success-section">
         <h2>Réservation réussie</h2>
         <p>Merci pour votre réservation. Nous avons hâte de vous accueillir !</p>
-    </div>
-    <a href="{{ path('app_home_page') }}" class="button retour-button">Retour à l'accueil</a>
-</body>
-</html>
+        <a href="{{ path('app_home_page') }}" class="button retour-button">Retour à l'accueil</a>
+    </section>
+{% endblock %}

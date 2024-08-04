@@ -21,12 +21,18 @@ class AvisController extends AbstractController
             $data = $form->getData();
             // Vous pouvez traiter les données ici, par exemple les sauvegarder en base de données
 
-            // Rediriger vers la page d'accueil après la soumission
-            return $this->redirectToRoute('home');
+            // Rediriger vers la page de succès après la soumission
+            return $this->redirectToRoute('avis_successavis');
         }
 
         return $this->render('avis/index.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/avis/success', name: 'avis_successavis')]
+    public function success(): Response
+    {
+        return $this->render('avis/successavis.html.twig');
     }
 }

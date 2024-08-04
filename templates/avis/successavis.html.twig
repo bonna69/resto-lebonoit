@@ -1,16 +1,17 @@
-{# templates/reservation/success.html.twig #}
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avis transmis</title>
-</head>
-<body>
-    <div class="container">
-        <h2>Avis transmis</h2>
-        <p>Merci pour votre avis.</p>
-    </div>
-    <a href="{{ path('app_home_page') }}" class="button retour-button">Retour à l'accueil</a>
-</body>
-</html>
+{# templates/avis/successavis.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Avis Envoyé{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/successavis.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section class="success-section">
+        <h1>Merci pour votre avis !</h1>
+        <p>Nous avons bien reçu votre avis et nous vous remercions pour votre retour.</p>
+        <a href="{{ path('app_home_page') }}" class="button">Retour à l'accueil</a>
+    </section>
+{% endblock %}

@@ -138,3 +138,66 @@ body {
 .submit-button:hover, .retour-button:hover {
     background-color: #0dcc5064; /* Couleur légèrement plus foncée pour le survol */
 }
+/* Styles pour la modal */
+.modal {
+    display: none; /* Masquer la modal par défaut */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+.submit-button {
+    background-color: #0dcc5064; /* Couleur du bouton de soumission */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #0d9b4f;
+}
