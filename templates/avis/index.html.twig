@@ -1,32 +1,54 @@
 {# templates/avis/index.html.twig #}
 {% extends 'base.html.twig' %}
 
+{% block title %}Le Bônoit - Votre Avis{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/avis.css') }}">
+{% endblock %}
+
 {% block content %}
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Le Bônoit - Votre Avis</title>
-    </head>
+    <section class="hero-section">
+        <h1>Votre avis</h1>
+    </section>
     
-    <header>
-        <a href="{{ path('app_home_page') }}" class="logo"><span>L</span>e Bônoit</a>
-        <div class="menuToggle" onclick="toggleMenu()"></div>
-        <ul class="navbar">
-            <li><a href="{{ path('app_home_page') }}" onclick="toggleMenu()">Accueil</a></li>
-            <li><a href="#about" onclick="toggleMenu()">À Propos de Nous</a></li>
-            <li><a href="#room" onclick="toggleMenu()">Notre Local</a></li>
-            <li><a href="#card" onclick="toggleMenu()">Notre Carte</a></li>
-            <li><a href="{{ path('avis') }}" onclick="toggleMenu()">Votre Avis</a></li>
-        </ul>
-    </header>
-    
-    <body>
-        <section class="avis-form">
+    <section class="avis-form-section">
+        <div class="form-container">
+            <h2>VOUS DÉSIREZ NOUS DONNER VOTRE AVIS ? REMPLISSEZ LE FORMULAIRE CI-DESSOUS !</h2>
             {{ form_start(form) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
-            
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        {{ form_label(form.commentaire) }}
+                        {{ form_widget(form.commentaire) }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        {{ form_widget(form.submit, { 'attr': { 'class': 'submit-button' } }) }}
+                    </div>
+                </div>
+            {{ form_end(form) }}
             <a href="{{ path('app_home_page') }}" class="button retour-button">Retour à l'accueil</a>
-        </section>
-    </body>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=..." width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('scripts/main.js') }}"></script>
+    <script>
+        // Add any specific JS for this page if necessary
+    </script>
 {% endblock %}

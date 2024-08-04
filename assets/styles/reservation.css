@@ -1,95 +1,93 @@
 body {
-    font-family: sans-serif;
-    background-color: #448044;
-    color: white;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+    
+    /* overflow: hidden; */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/annaba.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9; /* Ajustez cette valeur pour obtenir la transparence souhaitée */
+    z-index: -1; /* Place l'image de fond derrière le contenu */
 }
 
 .container {
-    background-color: #264526;
-    padding: 30px;
+    background-color: rgba(41, 64, 49, 0.559); 
+    padding: 2em;
+    margin-top: 150px;
+    margin-block-end: 200px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
-    color: black;
-    width: 400px;
-    margin: 0 auto;
+    color: #000000;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
 }
 
-.header {
+
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px;
+    color: #FFD700; /* Couleur dorée */
     text-align: center;
-    margin-bottom: 20px;
-}
-
-.header h2 {
-    color: #448044; /* Dark green heading */
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.header p {
-    color: #448044; /* Dark green text */
-    font-size: 16px;
-}
-
-.info {
-    margin-bottom: 20px;
-}
-
-.info p {
-    font-size: 14px;
-    line-height: 1.5;
+    margin-bottom: 10px; /* Espace en bas du titre */
 }
 
 .form-group {
-    display: flex;
-    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #000000; /* Gris clair pour les labels */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 8px;
     margin-bottom: 20px;
+    background-color: #0dcc5064; /* Gris foncé pour l'arrière-plan des champs */
+    color: #000000; /* Gris clair pour le texte dans les champs */
 }
 
-.guest-buttons,
-.date-picker {
-    display: flex;
-    align-items: center;
-}
-
-.guest-buttons button,
-.date-picker button {
-    background-color: #f2f2f2;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    margin-right: 10px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.guest-buttons button.active,
-.date-picker button.active {
-    background-color: #448044;
-    color: white;
-}
-
-.reserve-button {
-    background-color: #333;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.reserve-button:hover {
-    background-color: #336933; /* Darker green on hover */
-}
 select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #000000;
+    border-radius: 8px;
     margin-bottom: 20px;
+    background-color: #0dcc5064; /* Gris foncé pour l'arrière-plan du select */
+    color: #000000; /* Gris clair pour le texte dans le select */
+}
+
+button[type="submit"] {
+    background-color: #0dcc5064; /* Jaune doré pour le bouton */
+    color: #000000; /* Vert foncé pour le texte du bouton */
+    padding: 10px 20px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
