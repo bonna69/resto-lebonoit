@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {# <title>Le Bônoit</title> #}
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    {% block stylesheets %}
+        {# Ici vous pouvez ajouter des styles spécifiques à la page #}
+    {% endblock %}
 </head>
 <body>
 <header>
-    {# <a href="#" class="logo"><span>L</span>e Bônoit</a> #}
     <div class="menuToggle" onclick="toggleMenu()"></div>
     <ul class="navbar">
       <!-- Menu items here -->
@@ -22,7 +23,7 @@
         {% block content %}{% endblock %}
     </main>
 
-<a href="{{ path('reservation') }}" class="custom-button book_button"><span>R</span>eservation</a>
+{# <a href="{{ path('reservation') }}" class="custom-button book_button"><span>R</span>eservation</a> #}
 
 <script>
     function toggleMenu() {
@@ -31,7 +32,6 @@
     }
 
     const reservationBtn = document.querySelector(".book_button");
-
     reservationBtn.addEventListener("click", (event) => {
         event.preventDefault();
         window.location.href = "{{ path('reservation') }}";
@@ -39,14 +39,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
- 

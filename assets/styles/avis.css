@@ -1,26 +1,75 @@
-/* assets/styles/avis.css */
+body {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.559); 
+    color: #fff;
+    overflow: hidden;
+}
+
+.container {
+    background-color: transparent;
+    padding: 2em;
+    margin-top: 150px;
+    margin-block-end: 200px;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(150, 250, 0, 0.3);
+    text-align: center;
+    max-width: 1000px; /* Ajuste la largeur maximale du conteneur */
+}
+
 .avis-form-section {
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
-    padding: 50px;
-    background-color: #f9f9f9;
+    background: #000000;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(150, 250, 0, 0.3);
 }
 
 .form-container {
-    background: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 48%; /* Adjusted to leave space for the map */
-    max-width: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.form-container h2 {
+.form-content h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    color: rgba(150, 250, 0, 0.9); /* Couleur dorée */
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
+    margin-bottom: 20px; /* Espace en bas du titre */
+}
+
+.form-content p {
+    font-size: 14px;
+    color: rgba(252, 252, 252, 0.9); /* Couleur grise clair */
+    text-align: center;
+    margin-bottom: 10px; /* Espace en bas du sous-titre */
+}
+
+.form-content {
+    width: 48%;
+}
+
+.map-container {
+    width: 48%;
+    background: #000000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(150, 250, 0, 0.3);
+    overflow: hidden;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .form-row {
@@ -43,14 +92,17 @@
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #ffffff;
 }
 
 .form-group input, .form-group textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #8e8e8e;
     border-radius: 5px;
     font-size: 16px;
+    background-color: #0dcc5064; /* Couleur de fond des champs de formulaire */
+    color: #ffffff;
 }
 
 .form-group textarea {
@@ -59,14 +111,15 @@
 }
 
 .submit-button {
-    background-color: #000;
-    color: #fff;
+    background-color: #0dcc5064; /* Couleur du bouton de soumission */
+    color: #ffffff;
     border: none;
     padding: 15px 20px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    width: 100%; /* Full width for the submit button */
+    width: 100%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .retour-button {
@@ -74,27 +127,14 @@
     text-align: center;
     margin: 20px auto 0;
     padding: 10px 20px;
-    background-color: #000;
-    color: #fff;
+    background-color: #0d9b4f; /* Couleur du bouton retour */
+    color: #ffffff;
     text-decoration: none;
     border-radius: 5px;
     font-size: 16px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .submit-button:hover, .retour-button:hover {
-    background-color: #333;
-}
-
-.map-container {
-    width: 48%;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-
-.map-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+    background-color: #0dcc5064; /* Couleur légèrement plus foncée pour le survol */
 }
