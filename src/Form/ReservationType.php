@@ -18,18 +18,10 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'Nom',
-            ])
-            ->add('firstname', TextType::class, [
-                'label' => 'Prénom',
-            ])
-            ->add('email', EmailType::class, [
-                'label' => 'Email',
-            ])
-            ->add('phone', TelType::class, [
-                'label' => 'Téléphone',
-            ])
+            ->add('name', TextType::class, ['label' => 'Nom'])
+            ->add('firstname', TextType::class, ['label' => 'Prénom'])
+            ->add('email', EmailType::class, ['label' => 'Email'])
+            ->add('phone', TelType::class, ['label' => 'Téléphone'])
             ->add('date', DateType::class, [
                 'label' => 'Date',
                 'widget' => 'single_text',
@@ -37,6 +29,7 @@ class ReservationType extends AbstractType
             ->add('time', ChoiceType::class, [
                 'label' => 'Heure',
                 'choices' => $this->getTimeChoices(),
+                'placeholder' => 'Choisissez une heure', // Optionnel pour une meilleure UX
             ])
             ->add('number_of_persons', ChoiceType::class, [
                 'label' => 'Nombre de personnes',
@@ -48,9 +41,7 @@ class ReservationType extends AbstractType
                 'label' => 'Demandes spéciales',
                 'required' => false,
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Réserver',
-            ]);
+            ->add('submit', SubmitType::class, ['label' => 'Réserver']);
     }
 
     private function getTimeChoices(): array

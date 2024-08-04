@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    background-color: #448044; /* Dark green background */
+    background-color: #448044;
     color: white;
     display: flex;
     justify-content: center;
@@ -9,54 +9,87 @@ body {
 }
 
 .container {
-    background-color: #fff;
+    background-color: #264526;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     text-align: center;
-    color: black; /* Change text color inside the container to black */
+    color: black;
+    width: 400px;
+    margin: 0 auto;
 }
 
-h2 {
-    color: #448044; /* Dark green heading */
-}
-
-.form-group {
+.header {
+    text-align: center;
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+.header h2 {
+    color: #448044; /* Dark green heading */
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-input[type="time"],
-input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+.header p {
+    color: #448044; /* Dark green text */
+    font-size: 16px;
+}
+
+.info {
+    margin-bottom: 20px;
+}
+
+.info p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.guest-buttons,
+.date-picker {
+    display: flex;
+    align-items: center;
+}
+
+.guest-buttons button,
+.date-picker button {
+    background-color: #f2f2f2;
+    border: none;
+    padding: 10px 20px;
     border-radius: 4px;
-    box-sizing: border-box;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-input[type="submit"] {
-    background-color: #448044; /* Dark green button */
+.guest-buttons button.active,
+.date-picker button.active {
+    background-color: #448044;
+    color: white;
+}
+
+.reserve-button {
+    background-color: #333;
     color: white;
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-input[type="submit"]:hover {
+.reserve-button:hover {
     background-color: #336933; /* Darker green on hover */
 }
-
-.guest-buttons button.active {
-    background-color: #448044;
-    color: white;
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }

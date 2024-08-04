@@ -15,94 +15,104 @@
             <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom-0 mb-5">
                 <!-- Pâtes Tab -->
                 <li class="nav-item">
-                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3 active">
+                    <a href="#pates" class="nav-link active" data-bs-toggle="tab">
                         <i class="fa-solid fa-plate-wheat"></i>
                         <h6 class="mt-n2 mb-0">Pâtes</h6>
                     </a>
                 </li>
-                <div class="tab-pane fade show p-0 active">
-                    <div class="row g-4">
-                        <div class="d-flex align-items-center">
-                            <img src="{{ asset('path/to/pates-image.jpg') }}" alt="Pâtes">
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Soupes Tab -->
                 <li class="nav-item">
-                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3">
+                    <a href="#soupes" class="nav-link" data-bs-toggle="tab">
                         <i class="fa-solid fa-bowl-hot"></i>
                         <h6 class="mt-n2 mb-0">Soupes</h6>
                     </a>
                 </li>
-                <div class="tab-pane fade p-0">
-                    <div class="row g-4">
-                        <div class="d-flex align-items-center">
-                            <img src="{{ asset('path/to/soupes-image.jpg') }}" alt="Soupes">
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Salades Tab -->
                 <li class="nav-item">
-                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3">
+                    <a href="#salades" class="nav-link" data-bs-toggle="tab">
                         <i class="fa-solid fa-salad"></i>
                         <h6 class="mt-n2 mb-0">Salades</h6>
                     </a>
                 </li>
-                <div class="tab-pane fade p-0">
-                    <div class="row g-4">
-                        <div class="d-flex align-items-center">
-                            <img src="{{ asset('path/to/salades-image.jpg') }}" alt="Salades">
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Viandes Tab -->
                 <li class="nav-item">
-                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3">
+                    <a href="#viandes" class="nav-link" data-bs-toggle="tab">
                         <i class="fa-solid fa-meat"></i>
                         <h6 class="mt-n2 mb-0">Viandes</h6>
                     </a>
                 </li>
-                <div class="tab-pane fade p-0">
-                    <div class="row g-4">
-                        <div class="d-flex align-items-center">
-                            <img src="{{ asset('path/to/viandes-image.jpg') }}" alt="Viandes">
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Poissons Tab -->
                 <li class="nav-item">
-                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3">
+                    <a href="#poissons" class="nav-link" data-bs-toggle="tab">
                         <i class="fa-solid fa-fish-fins"></i>
                         <h6 class="mt-n2 mb-0">Poissons</h6>
                     </a>
                 </li>
-                <div class="tab-pane fade p-0">
-                    <div class="row g-4">
-                        <div class="d-flex align-items-center">
-                            <img src="{{ asset('path/to/poissons-image.jpg') }}" alt="Poissons">
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Desserts Tab -->
                 <li class="nav-item">
-                    <a href="#" class="d-flex align-items-center text-start mx-5 pb-3">
+                    <a href="#desserts" class="nav-link" data-bs-toggle="tab">
                         <i class="fa-solid fa-cupcake"></i>
                         <h6 class="mt-n2 mb-0">Desserts</h6>
                     </a>
                 </li>
-                <div class="tab-pane fade p-0">
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Pâtes Tab Content -->
+                <div class="tab-pane fade show active" id="pates">
                     <div class="row g-4">
-                        <div class="d-flex align-items-center">
-                            <img src="{{ asset('path/to/desserts-image.jpg') }}" alt="Desserts">
+                        <div class="col-md-12 d-flex align-items-center">
+                            <img src="{{ asset('path/to/pates-image.jpg') }}" alt="Pâtes" class="img-fluid">
                         </div>
                     </div>
                 </div>
-            </ul>
+
+                <!-- Soupes Tab Content -->
+                <div class="tab-pane fade" id="soupes">
+                    <div class="row g-4">
+                        <div class="col-md-12 d-flex align-items-center">
+                            <img src="{{ asset('path/to/soupes-image.jpg') }}" alt="Soupes" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Salades Tab Content -->
+                <div class="tab-pane fade" id="salades">
+                    <div class="row g-4">
+                        <div class="col-md-12 d-flex align-items-center">
+                            <img src="{{ asset('path/to/salades-image.jpg') }}" alt="Salades" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Viandes Tab Content -->
+                <div class="tab-pane fade" id="viandes">
+                    <div class="row g-4">
+                        <div class="col-md-12 d-flex align-items-center">
+                            <img src="{{ asset('path/to/viandes-image.jpg') }}" alt="Viandes" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poissons Tab Content -->
+                <div class="tab-pane fade" id="poissons">
+                    <div class="row g-4">
+                        <div class="col-md-12 d-flex align-items-center">
+                            <img src="{{ asset('path/to/poissons-image.jpg') }}" alt="Poissons" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desserts Tab Content -->
+                <div class="tab-pane fade" id="desserts">
+                    <div class="row g-4">
+                        <div class="col-md-12 d-flex align-items-center">
+                            <img src="{{ asset('path/to/desserts-image.jpg') }}" alt="Desserts" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
