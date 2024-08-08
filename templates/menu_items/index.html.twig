@@ -1,119 +1,50 @@
-{% extends 'base.html.twig' %}
+<!-- templates/menu_items/index.html.twig -->
 
-{% block content %}
-<div class="container--xxl py-5">
-    <div class="container">
-        <!-- Section Title -->
-        <div class="text-center wow fadeInUp">
-            <h5 class="section-title ff-secondary text-center text-primary fw-normal">
-                Goûtez ANNABA
-            </h5>
+<div class="contenu">
+    <div class="box" data-category="Salades">
+        <div class="imbox">
+            <img src="{{ asset('assets/images/salade/hmiss.jpeg') }}" alt="Salades">
         </div>
-
-        <!-- Tab Navigation -->
-        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-            <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom-0 mb-5">
-                <!-- Pâtes Tab -->
-                <li class="nav-item">
-                    <a href="#pates" class="nav-link active" data-bs-toggle="tab">
-                        <i class="fa-solid fa-plate-wheat"></i>
-                        <h6 class="mt-n2 mb-0">Pâtes</h6>
-                    </a>
-                </li>
-                <!-- Soupes Tab -->
-                <li class="nav-item">
-                    <a href="#soupes" class="nav-link" data-bs-toggle="tab">
-                        <i class="fa-solid fa-bowl-hot"></i>
-                        <h6 class="mt-n2 mb-0">Soupes</h6>
-                    </a>
-                </li>
-                <!-- Salades Tab -->
-                <li class="nav-item">
-                    <a href="#salades" class="nav-link" data-bs-toggle="tab">
-                        <i class="fa-solid fa-salad"></i>
-                        <h6 class="mt-n2 mb-0">Salades</h6>
-                    </a>
-                </li>
-                <!-- Viandes Tab -->
-                <li class="nav-item">
-                    <a href="#viandes" class="nav-link" data-bs-toggle="tab">
-                        <i class="fa-solid fa-meat"></i>
-                        <h6 class="mt-n2 mb-0">Viandes</h6>
-                    </a>
-                </li>
-                <!-- Poissons Tab -->
-                <li class="nav-item">
-                    <a href="#poissons" class="nav-link" data-bs-toggle="tab">
-                        <i class="fa-solid fa-fish-fins"></i>
-                        <h6 class="mt-n2 mb-0">Poissons</h6>
-                    </a>
-                </li>
-                <!-- Desserts Tab -->
-                <li class="nav-item">
-                    <a href="#desserts" class="nav-link" data-bs-toggle="tab">
-                        <i class="fa-solid fa-cupcake"></i>
-                        <h6 class="mt-n2 mb-0">Desserts</h6>
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Tab Content -->
-            <div class="tab-content">
-                <!-- Pâtes Tab Content -->
-                <div class="tab-pane fade show active" id="pates">
-                    <div class="row g-4">
-                        <div class="col-md-12 d-flex align-items-center">
-                            <img src="{{ asset('path/to/pates-image.jpg') }}" alt="Pâtes" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Soupes Tab Content -->
-                <div class="tab-pane fade" id="soupes">
-                    <div class="row g-4">
-                        <div class="col-md-12 d-flex align-items-center">
-                            <img src="{{ asset('path/to/soupes-image.jpg') }}" alt="Soupes" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Salades Tab Content -->
-                <div class="tab-pane fade" id="salades">
-                    <div class="row g-4">
-                        <div class="col-md-12 d-flex align-items-center">
-                            <img src="{{ asset('path/to/salades-image.jpg') }}" alt="Salades" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Viandes Tab Content -->
-                <div class="tab-pane fade" id="viandes">
-                    <div class="row g-4">
-                        <div class="col-md-12 d-flex align-items-center">
-                            <img src="{{ asset('path/to/viandes-image.jpg') }}" alt="Viandes" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Poissons Tab Content -->
-                <div class="tab-pane fade" id="poissons">
-                    <div class="row g-4">
-                        <div class="col-md-12 d-flex align-items-center">
-                            <img src="{{ asset('path/to/poissons-image.jpg') }}" alt="Poissons" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Desserts Tab Content -->
-                <div class="tab-pane fade" id="desserts">
-                    <div class="row g-4">
-                        <div class="col-md-12 d-flex align-items-center">
-                            <img src="{{ asset('path/to/desserts-image.jpg') }}" alt="Desserts" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="text">
+            <h3>Nos Salades</h3>
         </div>
     </div>
+    <div class="box" data-category="Boureks">
+        <div class="imbox">
+            <img src="{{ asset('assets/images/entree/bourek-annabi.jpg') }}" alt="Boureks">
+        </div>
+        <div class="text">
+            <h3>Nos Boureks</h3>
+        </div>
+    </div>
+    <!-- Repeat for other categories -->
 </div>
-{% endblock %}
+
+<!-- Div to display the menu items -->
+<div id="menu-items-container"></div>
+
+<script>
+    document.querySelectorAll('.box').forEach(function (box) {
+        box.addEventListener('click', function () {
+            const category = this.dataset.category;
+
+            fetch(`/menu/items/${category}`)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('menu-items-container');
+                    container.innerHTML = ''; // Clear existing content
+
+                    data.forEach(item => {
+                        const itemElement = document.createElement('div');
+                        itemElement.classList.add('menu-item');
+                        itemElement.innerHTML = `
+                            <h4>${item.name}</h4>
+                            <p>${item.description}</p>
+                            <span class="price">${item.price}€</span>
+                        `;
+                        container.appendChild(itemElement);
+                    });
+                });
+        });
+    });
+</script>

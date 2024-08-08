@@ -1,0 +1,37 @@
+{# templates/contact_access/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact et Accès{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/contact.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="contact-container">
+    <h1>Contact</h1>
+
+    <div class="contact-info">
+        <h2>Adresse :</h2>
+        <p>{{ contactAccess.adresse ?? 'Non disponible' }}</p>
+
+        <h2>Téléphone :</h2>
+        <p>{{ contactAccess.telephone ?? 'Non disponible' }}</p>
+
+        <h2>Email :</h2>
+        <p>{{ contactAccess.email ?? 'Non disponible' }}</p>
+
+        <h2>Horaires :</h2>
+        <p>{{ contactAccess.openingHours ?? 'Non disponible' }}</p>
+    </div>
+
+    <div class="map">
+        <!-- Exemple d'intégration d'une carte Google Maps -->
+        <iframe src="https://www.google.com/maps/embed/v1/place?q={{ contactAccess.adresse | urlencode }}&key=YOUR_GOOGLE_MAPS_API_KEY" allowfullscreen></iframe>
+    </div>
+
+    <h1>Accès</h1>
+
+    <p>Informations sur l'accès ici.</p>
+</div>
+{% endblock %}

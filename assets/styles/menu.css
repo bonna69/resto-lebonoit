@@ -1,0 +1,10 @@
+/* styles/menu.css */
+
+#menu-items-container {
+    margin-top: 20px;
+}
+
+.menu-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}

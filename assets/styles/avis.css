@@ -19,7 +19,7 @@ body {
     margin-top: 150px;
     margin-block-end: 200px;
     border-radius: 8px;
-    box-shadow: 0 5px 10px rgba(150, 250, 0, 0.3);
+    box-shadow: 0 5px 10px #07b03a;
     text-align: center;
     max-width: 1000px; /* Ajuste la largeur maximale du conteneur */
 }
@@ -30,7 +30,7 @@ body {
     background: #000000;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(150, 250, 0, 0.3);
+    box-shadow: 0 0 10px #07b03a;
 }
 
 .form-container {
@@ -40,9 +40,9 @@ body {
 }
 
 .form-content h2 {
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Merriweather', serif;
     font-size: 18px;
-    color: rgba(150, 250, 0, 0.9); /* Couleur dorée */
+    color: #07b03a; /* Couleur dorée */
     text-align: center;
     margin-bottom: 20px; /* Espace en bas du titre */
 }
@@ -62,7 +62,7 @@ body {
     width: 48%;
     background: #000000;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(150, 250, 0, 0.3);
+    box-shadow: 0 0 10px #07b03a;
     overflow: hidden;
 }
 
@@ -101,7 +101,7 @@ body {
     border: 1px solid #8e8e8e;
     border-radius: 5px;
     font-size: 16px;
-    background-color: #0dcc5064; /* Couleur de fond des champs de formulaire */
+    background-color: #07b03a; /* Couleur de fond des champs de formulaire */
     color: #ffffff;
 }
 
@@ -111,7 +111,7 @@ body {
 }
 
 .submit-button {
-    background-color: #0dcc5064; /* Couleur du bouton de soumission */
+    background-color: #07b03a; /* Couleur du bouton de soumission */
     color: #ffffff;
     border: none;
     padding: 15px 20px;
@@ -127,16 +127,16 @@ body {
     text-align: center;
     margin: 20px auto 0;
     padding: 10px 20px;
-    background-color: #0d9b4f; /* Couleur du bouton retour */
+    background-color: #07b03a; /* Couleur du bouton retour */
     color: #ffffff;
     text-decoration: none;
     border-radius: 5px;
     font-size: 16px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 10px #07b03a;
 }
 
 .submit-button:hover, .retour-button:hover {
-    background-color: #0dcc5064; /* Couleur légèrement plus foncée pour le survol */
+    background-color: #0d9b4f; /* Couleur légèrement plus foncée pour le survol */
 }
 /* Styles pour la modal */
 .modal {
@@ -188,7 +188,7 @@ body {
 }
 
 .submit-button {
-    background-color: #0dcc5064; /* Couleur du bouton de soumission */
+    background-color: #07b03a; /* Couleur du bouton de soumission */
     color: #ffffff;
     border: none;
     padding: 10px 20px;

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <title>{% block title %}My Symfony App{% endblock %}</title>
     {% block stylesheets %}
         {# Ici vous pouvez ajouter des styles spécifiques à la page #}
     {% endblock %}
@@ -12,7 +13,7 @@
 <header>
     <div class="menuToggle" onclick="toggleMenu()"></div>
     <ul class="navbar">
-      <!-- Menu items here -->
+        <!-- Menu items here -->
     </ul>
     <div class="region-header">
         <a href="#" class="map_button"></a>
@@ -20,10 +21,11 @@
 </header>
 
 <main>
-        {% block content %}{% endblock %}
-    </main>
+    {% block content %}{% endblock %}
+</main>
 
-{# <a href="{{ path('reservation') }}" class="custom-button book_button"><span>R</span>eservation</a> #}
+<!-- Commentaire: Lien de réservation -->
+<!-- <a href="{{ path('reservation') }}" class="custom-button book_button"><span>R</span>eservation</a> -->
 
 <script>
     function toggleMenu() {
@@ -31,10 +33,15 @@
         navbar.classList.toggle('open');
     }
 
-    const reservationBtn = document.querySelector(".book_button");
-    reservationBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.location.href = "{{ path('reservation') }}";
+    // Gestion de la redirection vers la page de réservation
+    document.addEventListener("DOMContentLoaded", () => {
+        const reservationBtn = document.querySelector(".book_button");
+        if (reservationBtn) {
+            reservationBtn.addEventListener("click", (event) => {
+                event.preventDefault();
+                window.location.href = "{{ path('reservation') }}";
+            });
+        }
     });
 </script>
 </body>
