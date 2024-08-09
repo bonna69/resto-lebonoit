@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carte du Restaurant{% endblock %}
+
+{% block content %}
+<section class="contenu">
+    <div class="box">
+        <div class="imbox">
+            <img id="menu-image" src="{{ menuImage }}" alt="Carte du Restaurant">
+        </div>
+        {% if isAdmin %}
+        <div class="menu-editor">
+            <button onclick="openEditor()">Modifier le Menu</button>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% if isAdmin %}
+<div id="editor-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditor()">&times;</span>
+        <h2>Modifier la Carte</h2>
+        <form id="menu-form" method="post" action="{{ path('update_menu') }}">
+            <label for="menuImage">URL de l'image du menu:</label>
+            <input type="text" id="menuImage" name="menuImage" value="{{ menuImage }}">
+            <input type="submit" value="Enregistrer">
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

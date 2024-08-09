@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,39 +10,31 @@
     {% endblock %}
 </head>
 <body>
-<header>
-    <div class="menuToggle" onclick="toggleMenu()"></div>
-    <ul class="navbar">
-        <!-- Menu items here -->
-    </ul>
-    <div class="region-header">
-        <a href="#" class="map_button"></a>
-    </div> 
-</header>
+    <header>
+        <div class="menuToggle" onclick="toggleMenu()"></div>
+        <nav class="navbar">
+            <!-- Menu items here -->
+        </nav>
+        <div class="region-header">
+            <a href="#" class="map_button"></a>
+        </div> 
+    </header>
 
-<main>
-    {% block content %}{% endblock %}
-</main>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
-<!-- Commentaire: Lien de réservation -->
-<!-- <a href="{{ path('reservation') }}" class="custom-button book_button"><span>R</span>eservation</a> -->
+    <!-- Bannière de consentement aux cookies -->
+    <div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: white; padding: 10px; text-align: center;">
+        <p>
+            Nous utilisons des cookies pour améliorer votre expérience sur notre site. 
+            <a href="{{ path('app_home_page') }}" style="color: #66ccff;">En savoir plus</a>
+        </p>
+        <button onclick="acceptCookies()" style="background-color: #0066cc; color: white; border: none; padding: 10px 20px; cursor: pointer;">
+            Accepter
+        </button>
+    </div>
 
-<script>
-    function toggleMenu() {
-        const navbar = document.querySelector('.navbar');
-        navbar.classList.toggle('open');
-    }
-
-    // Gestion de la redirection vers la page de réservation
-    document.addEventListener("DOMContentLoaded", () => {
-        const reservationBtn = document.querySelector(".book_button");
-        if (reservationBtn) {
-            reservationBtn.addEventListener("click", (event) => {
-                event.preventDefault();
-                window.location.href = "{{ path('reservation') }}";
-            });
-        }
-    });
-</script>
+    <script src="{{ asset('scripts/app.js') }}"></script>
 </body>
 </html>
