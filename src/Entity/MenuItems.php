@@ -26,6 +26,9 @@ class MenuItems
     #[ORM\Column(length: 255)]
     private ?string $category = null;
 
+    #[ORM\Column(length: 255, nullable: true)] // Ajout du champ image
+    private ?string $image = null; // Type nullable
+
     #[ORM\Column]
     private ?bool $is_available = null;
 
@@ -81,6 +84,18 @@ class MenuItems
     public function setCategory(string $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

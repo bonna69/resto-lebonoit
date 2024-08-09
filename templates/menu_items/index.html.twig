@@ -1,21 +1,26 @@
-{# templates/menu_items/index.html.twig #}
-
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ category | capitalize }} - Le Bônoit{% endblock %}
+{% block title %}Menu Items{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/menu.css') }}">
+{% endblock %}
 
 {% block content %}
-    <section class="category-menu">
-        <h2>{{ category | capitalize }}</h2>
-        <div class="menu-items">
-            {% for item in items %}
+    <section class="menu-section">
+        <h2>Menu: {{ category }}</h2>
+        <div class="menu-container">
+            {% for item in menuItems %}
                 <div class="menu-item">
-                    <h3>{{ item.name }}</h3>
-                    <p>{{ item.description }}</p>
-                    <p>Prix: {{ item.price }}€</p>
+                    {% if item.image %}
+                        <img src="{{ asset('images/' ~ item.image) }}" alt="{{ item.name }}" class="menu-item-image">
+                    {% endif %}
+                    <h3 class="menu-item-title">{{ item.name }}</h3>
+                    <p class="menu-item-description">{{ item.description }}</p>
+                    <p class="menu-item-price">{{ item.price }}€</p>
                 </div>
             {% else %}
-                <p>Aucun élément trouvé pour cette catégorie.</p>
+                <p>No menu items available.</p>
             {% endfor %}
         </div>
     </section>
