@@ -1,50 +1,23 @@
-<!-- templates/menu_items/index.html.twig -->
+{# templates/menu_items/index.html.twig #}
 
-<div class="contenu">
-    <div class="box" data-category="Salades">
-        <div class="imbox">
-            <img src="{{ asset('assets/images/salade/hmiss.jpeg') }}" alt="Salades">
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category | capitalize }} - Le Bônoit{% endblock %}
+
+{% block content %}
+    <section class="category-menu">
+        <h2>{{ category | capitalize }}</h2>
+        <div class="menu-items">
+            {% for item in items %}
+                <div class="menu-item">
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.description }}</p>
+                    <p>Prix: {{ item.price }}€</p>
+                </div>
+            {% else %}
+                <p>Aucun élément trouvé pour cette catégorie.</p>
+            {% endfor %}
         </div>
-        <div class="text">
-            <h3>Nos Salades</h3>
-        </div>
-    </div>
-    <div class="box" data-category="Boureks">
-        <div class="imbox">
-            <img src="{{ asset('assets/images/entree/bourek-annabi.jpg') }}" alt="Boureks">
-        </div>
-        <div class="text">
-            <h3>Nos Boureks</h3>
-        </div>
-    </div>
-    <!-- Repeat for other categories -->
-</div>
+    </section>
+{% endblock %}
 
-<!-- Div to display the menu items -->
-<div id="menu-items-container"></div>
-
-<script>
-    document.querySelectorAll('.box').forEach(function (box) {
-        box.addEventListener('click', function () {
-            const category = this.dataset.category;
-
-            fetch(`/menu/items/${category}`)
-                .then(response => response.json())
-                .then(data => {
-                    const container = document.getElementById('menu-items-container');
-                    container.innerHTML = ''; // Clear existing content
-
-                    data.forEach(item => {
-                        const itemElement = document.createElement('div');
-                        itemElement.classList.add('menu-item');
-                        itemElement.innerHTML = `
-                            <h4>${item.name}</h4>
-                            <p>${item.description}</p>
-                            <span class="price">${item.price}€</span>
-                        `;
-                        container.appendChild(itemElement);
-                    });
-                });
-        });
-    });
-</script>

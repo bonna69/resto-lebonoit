@@ -55,3 +55,31 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // Gestion du menu toggle
+    const menuToggle = document.querySelector('.menuToggle');
+    const navbar = document.querySelector('.navbar');
+    
+    menuToggle.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+    });
+
+    // Gestion du modal
+    const modal = document.getElementById('reservationModal');
+    const btn = document.querySelector('.book_button');
+    const span = document.getElementsByClassName('close')[0];
+
+    btn.onclick = function() {
+        modal.style.display = 'block';
+    }
+
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+});

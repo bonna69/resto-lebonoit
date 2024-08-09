@@ -25,15 +25,15 @@
 
 <main>
     <section class="banniere" id="banner">
-    <div class="overlay"></div>
-    <div class="contenu">
-        <h2>La où chaque plat raconte une histoire d'Algérie!</h2>
-        <p>
-            Un restaurant qui se réfère à la cuisine de la ville d'Annaba, une
-            ville côtière située dans le nord-est de l'Algérie. La cuisine annabie
-            est riche en saveurs méditerranéennes et arabes, avec une forte
-            influence de la mer.
-        </p>
+        <div class="overlay"></div>
+        <div class="contenu">
+            <h2>La où chaque plat raconte une histoire d'Algérie!</h2>
+            <p>
+                Un restaurant qui se réfère à la cuisine de la ville d'Annaba, une
+                ville côtière située dans le nord-est de l'Algérie. La cuisine annabie
+                est riche en saveurs méditerranéennes et arabes, avec une forte
+                influence de la mer.
+            </p>
             <a href="#menu" class="custom-button btn1" id="Menu">Goûtez Annaba</a>
             <a href="#" class="custom-button book_button">Réservation</a>
         </div>
@@ -60,77 +60,78 @@
     </section>
 
     <section class="menu" id="menu">
-        <div class="titre">
-            <h2 class="titre-texte">Nos <span>S</span>pécialités</h2>
-            <p>La mer, le soleil, et les saveurs d'Annaba.</p>
-        </div>
-        <div class="contenu">
-            <div class="box">
-                <div class="imbox">
-                    <img src="{{ asset('assets/images/salade/hmiss.jpeg') }}" alt="Salades">
-                </div>
-                <div class="text">
-                    <h3>Nos Salades</h3>
-                </div>
+    <div class="titre">
+        <h2 class="titre-texte">Nos <span>S</span>pécialités</h2>
+        <p>La mer, le soleil, et les saveurs d'Annaba.</p>
+    </div>
+    <div class="contenu">
+        <a href="{{ path('app_menu_items_by_category', {'category': 'salades'}) }}" class="box" data-category="Salades">
+            <div class="imbox">
+                <img src="{{ asset('assets/images/salade/hmiss.jpeg') }}" alt="Salades">
             </div>
-            <div class="box">
-                <div class="imbox">
-                    <img src="{{ asset('assets/images/entree/bourek-annabi.jpg') }}" alt="Bourek Annabi">
-                </div>
-                <div class="text">
-                    <h3>Nos Boureks</h3>
-                </div>
+            <div class="text">
+                <h3>Nos Salades</h3>
             </div>
-            <div class="box">
-                <div class="imbox">
-                    <img src="{{ asset('assets/images/soupe/hssou-chorba-smid-4.jpg') }}" alt="Soupes">
-                </div>
-                <div class="text">
-                    <h3>Nos Soupes</h3>
-                </div>
+        </a>
+        <a href="{{ path('app_menu_items_by_category', {'category': 'boureks'}) }}" class="box" data-category="Boureks">
+            <div class="imbox">
+                <img src="{{ asset('assets/images/entree/bourek-annabi.jpg') }}" alt="Bourek Annabi">
             </div>
-            <div class="box">
-                <div class="imbox">
-                    <img src="{{ asset('assets/images/poisson/poissonl.jpg') }}" alt="Poissons">
-                </div>
-                <div class="text">
-                    <h3>Nos Poissons</h3>
-                </div>
+            <div class="text">
+                <h3>Nos Boureks</h3>
             </div>
-            <div class="box">
-                <div class="imbox">
-                    <img src="{{ asset('assets/images/pate/cha5chou5a.jpg') }}" alt="Pâtes">
-                </div>
-                <div class="text">
-                    <h3>Nos Pâtes</h3>
-                </div>
+        </a>
+        <a href="{{ path('app_menu_items_by_category', {'category': 'soupes'}) }}" class="box" data-category="Soupes">
+            <div class="imbox">
+                <img src="{{ asset('assets/images/soupe/hssou-chorba-smid-4.jpg') }}" alt="Soupes">
             </div>
-            <div class="box">
-                <div class="imbox">
-                    <img src="{{ asset('assets/images/couscous/couscous.jpg') }}" alt="Couscous">
-                </div>
-                <div class="text">
-                    <h3>Nos Couscous</h3>
-                </div>
+            <div class="text">
+                <h3>Nos Soupes</h3>
             </div>
-            <div class="box">
-                <div class="imbox">
-                    <img src="{{ asset('assets/images/viande/Dolma.jpg') }}" alt="Sauces">
-                </div>
-                <div class="text">
-                    <h3>Nos Sauces</h3>
-                </div>
+        </a>
+        <a href="{{ path('app_menu_items_by_category', {'category': 'poissons'}) }}" class="box" data-category="Poissons">
+            <div class="imbox">
+                <img src="{{ asset('assets/images/poisson/poissonl.jpg') }}" alt="Poissons">
             </div>
-            <div class="box">
-                <div class="imbox">
-                    <img src="{{ asset('assets/images/dessert/Baklava.jpg') }}" alt="Desserts">
-                </div>
-                <div class="text">
-                    <h3>Nos Desserts</h3>
-                </div>
+            <div class="text">
+                <h3>Nos Poissons</h3>
             </div>
-        </div>
-    </section>
+        </a>
+        <a href="{{ path('app_menu_items_by_category', {'category': 'pates'}) }}" class="box" data-category="Pates">
+            <div class="imbox">
+                <img src="{{ asset('assets/images/pate/cha5chou5a.jpg') }}" alt="Pâtes">
+            </div>
+            <div class="text">
+                <h3>Nos Pâtes</h3>
+            </div>
+        </a>
+        <a href="{{ path('app_menu_items_by_category', {'category': 'couscous'}) }}" class="box" data-category="Couscous">
+            <div class="imbox">
+                <img src="{{ asset('assets/images/couscous/couscous.jpg') }}" alt="Couscous">
+            </div>
+            <div class="text">
+                <h3>Nos Couscous</h3>
+            </div>
+        </a>
+        <a href="{{ path('app_menu_items_by_category', {'category': 'sauces'}) }}" class="box" data-category="Sauces">
+            <div class="imbox">
+                <img src="{{ asset('assets/images/viande/Dolma.jpg') }}" alt="Sauces">
+            </div>
+            <div class="text">
+                <h3>Nos Sauces</h3>
+            </div>
+        </a>
+        <a href="{{ path('app_menu_items_by_category', {'category': 'desserts'}) }}" class="box" data-category="Desserts">
+            <div class="imbox">
+                <img src="{{ asset('assets/images/dessert/Baklava.jpg') }}" alt="Desserts">
+            </div>
+            <div class="text">
+                <h3>Nos Desserts</h3>
+            </div>
+        </a>
+    </div>
+</section>
+
 
     <section class="local" id="room">
         <div class="titre">
@@ -175,11 +176,9 @@
         </div>
     </section>
 
-    
-        <div id="copyright">
-            <p>copyright 2024 <a href="#">Le Bônoit</a> Tous droits réservés</p>
-        </div>
-    </section>
+    <div id="copyright">
+        <p>copyright 2024 <a href="#">Le Bônoit</a> Tous droits réservés</p>
+    </div>
 
     <!-- Modale de Réservation -->
     <div id="reservationModal" class="modal">
@@ -219,5 +218,4 @@
 
 {% block javascripts %}
     <script src="{{ asset('scripts/main.js') }}"></script>
-    
 {% endblock %}

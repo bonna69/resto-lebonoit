@@ -4,7 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth; 
+    scroll-behavior: smooth;
 }
 
 body {
@@ -13,18 +13,17 @@ body {
 }
 
 /* Header */
-/* Header */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2px 2%; /* Espacement équilibré autour du contenu */
-    z-index: 1000; /* Augmentation du z-index pour s'assurer qu'il reste au-dessus d'autres éléments */
+    padding: 2px 2%; /* Espacement autour du contenu */
+    z-index: 1000; /* Assure que le header est au-dessus des autres éléments */
     display: flex;
     justify-content: space-between; /* Distribution des éléments aux extrémités */
     align-items: center;
-    background: rgba(0, 0, 0, 0.800); /* Fond semi-transparent pour le header */
+    background: rgba(0, 0, 0, 0.800); /* Fond semi-transparent */
     transition: all 0.5s ease; /* Transition lissée */
 }
 
@@ -32,64 +31,57 @@ header {
 .logo {
     font-weight: bold;
     font-size: 2em;
-    color: #fff; /* Couleur principale du logo */
+    color: #fff; /* Couleur du logo */
     text-decoration: none;
 }
 
-/* Accentuation du texte dans le logo */
 .logo span {
-    color: #0dcc50; /* Couleur d'accent pour le texte du logo */
+    color: #0dcc50; /* Couleur d'accent pour le logo */
 }
 
-/* Navbar Container */
+/* Navbar */
 .navbar {
     display: flex;
     align-items: center;
     gap: 30px;
     font-family: 'Poppins', sans-serif;
-    transition: top 0.3s ease; /* Ajout d'une transition pour un effet fluide */
+    transition: top 0.3s ease; /* Transition fluide pour la navbar */
 }
 
-/* Navbar hidden state */
 .navbar.hidden {
-    top: -100px; /* Cache la navbar en la déplaçant vers le haut, hors de l'écran */
+    top: -100px; /* Cache la navbar en la déplaçant vers le haut */
 }
 
-/* Navbar Items */
 .navbar li {
     list-style: none;
 }
 
-/* Navbar Links */
 .navbar a {
-    color: #fff; /* Couleur de texte blanche pour un bon contraste */
+    color: #fff; /* Couleur de texte */
     text-decoration: none;
     font-weight: 700;
-    padding: 5px 10px; /* Ajout d'un padding pour un meilleur clic */
-    transition: all 0.3s ease; /* Transition lisse pour les changements de style */
-    position: relative; /* Pour permettre l'utilisation d'effets pseudo-élément */
+    padding: 5px 10px;
+    transition: all 0.3s ease; /* Transition lisse pour les liens */
+    position: relative; /* Pour les effets pseudo-éléments */
 }
 
-/* Navbar Hover Effect */
 .navbar a:hover {
-    color: #0dcc50; /* Changement de couleur au survol */
+    color: #0dcc50; /* Couleur au survol */
 }
 
-/* Navbar Active Link Effect */
 .navbar a::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -2px; /* Positionnement de la ligne en bas du lien */
+    bottom: -2px;
     width: 100%;
     height: 2px;
-    background-color: #0dcc50; /* Couleur de la ligne */
+    background-color: #0dcc50; /* Ligne sous le lien */
     transform: scaleX(0); /* Ligne masquée au départ */
     transform-origin: right; /* Origine de la transformation */
-    transition: transform 0.3s ease; /* Transition de l'effet */
+    transition: transform 0.3s ease;
 }
 
-/* Active Link Effect on Hover */
 .navbar a:hover::after {
     transform: scaleX(1); /* Ligne visible au survol */
     transform-origin: left; /* Origine de la transformation inversée */
@@ -117,7 +109,8 @@ header {
     background-color: #07b03a;
 }
 
-/* Banniere */
+/* Bannière */
+/* Bannière */
 .banniere {
     position: relative;
     width: 100%;
@@ -125,89 +118,74 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(/assets/images/annaba.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/images/annaba.jpg); /* Dégradé sombre + image de fond */
     background-size: cover;
     background-position: center;
     color: #fff;
     text-align: center;
     overflow: hidden;
+    border-bottom: 5px solid #0dcc50; /* Bordure colorée en bas */
 }
 
-
-
-
-.banniere .contenu {
-    position: relative;
-    z-index: 2;
-    max-width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.7); /* Fond semi-transparent pour mettre en avant le texte */
-    border-radius: 10px;
-    animation: fadeInUp 1s ease-in-out; /* Animation légère à l'apparition */
-}
-
+/* Titre */
 .banniere .contenu h2 {
-    font-size: 3em;
-    margin-bottom: 20px;
+    font-size: 3.5em; /* Taille du texte plus grande */
+    margin-bottom: 25px; /* Espacement ajusté */
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    color: #0dcc50; /* Couleur d'accent */
+    letter-spacing: 3px; /* Espacement des lettres élargi */
+    font-weight: 700; /* Poids de police renforcé */
+    color: #f4f4f4; /* Couleur du texte ajustée */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Ombre portée */
 }
 
+/* Paragraphe */
 .banniere .contenu p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    line-height: 1.5;
-    color: #ddd;
+    font-size: 1.5em; /* Taille du texte augmentée */
+    margin-bottom: 35px; /* Espacement ajusté */
+    line-height: 1.6;
+    color: #e0e0e0; /* Couleur du texte ajustée */
+    max-width: 80%; /* Largeur maximale */
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Bouton */
 .banniere .btn-order {
-    padding: 15px 30px;
-    background-color: #0dcc50;
+    padding: 18px 36px; /* Espacement du bouton augmenté */
+    background-color: #0dcc50; /* Couleur de fond */
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: bold;
+    font-weight: 600; /* Poids de police modifié */
     text-decoration: none;
-    border-radius: 50px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 30px; /* Bordure arrondie */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Ajout de la transition pour l'ombre portée */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Ombre portée */
 }
 
 .banniere .btn-order:hover {
-    background-color: #07b03a;
-    transform: scale(1.05);
+    background-color: #07b03a; /* Couleur au survol */
+    transform: scale(1.08); /* Effet de zoom au survol */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4); /* Ombre plus marquée au survol */
 }
-
-/* Animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 
 
 /* Titres et texte */
-.titre-texte {
+.titre-texte{
     color: #000;
     font-size: 2em;
-    font-weight: 300;
+    font-weight: 300px;
     text-transform: capitalize;
+   
 }
 
-.titre-texte span {
+.titre-texte span{
     color: #0dcc50;
     font-size: 1.5em;
-    font-weight: 700;
+    font-weight: 700px;
 }
 
+/* Sections */
 section {
     padding: 100px 20px;
 }
@@ -220,14 +198,20 @@ section {
 }
 
 .row .col50 {
+    position: relative;
     width: 48%;
+    justify-content: center;
+    align-items: center;
+}
+
+.row .col50 h2 {
     margin-bottom: 20px;
 }
 
 .row .col50 img {
     height: 450px;
-    width: 100%;
-    object-fit: cover;
+    width: 600px;
+    position: relative;
     box-shadow: 20px 15px 15px rgba(0, 0, 0, 0.8);
 }
 
@@ -240,6 +224,7 @@ section {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 40px;
 }
 
 .menu .contenu .box {
@@ -249,7 +234,16 @@ section {
     box-shadow: 20px 15px 35px rgba(0, 0, 0, 0.8);
 }
 
+.menu .contenu .box .imbox {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
 .menu .contenu .box .imbox img {
+    position: relative;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -257,32 +251,40 @@ section {
 
 .menu .contenu .box .text {
     text-align: center;
-    font-weight: 300;
+    padding: 0 20px 20px;
+}
+
+.menu .contenu .box .text h3 {
+    text-align: center;
+    font-weight: 500;
+    color: #000;
 }
 
 /* Local */
+.local {
+    margin-top: -100px;
+}
+
 .local .contenu {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 40px;
 }
 
 .local .contenu .box {
-    width: 340px;
-    margin: 20px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 15px;
-    padding: 40px;
+    width: 300px;
+    margin: 15px;
+    border: 5px solid #fff;
     box-shadow: 10px 15px 20px rgba(0, 0, 0, 0.8);
 }
 
-.local .contenu .box .imbox img {
+.local .contenu .box img {
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: 300px;
+    top: 0;
+    left: 0;
     object-fit: cover;
 }
 
@@ -332,50 +334,6 @@ section {
 
 .contact .h2 {
     font-size: 1.5em;
-}
-
-/* Formulaire de contact */
-.contactform {
-    background: #fff;
-    box-shadow: 5px 15px 50px rgba(0, 0, 0, 0.8);
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 50px;
-    border-radius: 10px;
-}
-
-.contactform h3 {
-    color: #111;
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
-
-.contactform .inputboite input,
-.contactform .inputboite textarea {
-    width: 100%;
-    border: 1px solid #ddd;
-    padding: 10px;
-    color: #111;
-    outline: none;
-    font-size: 16px;
-    font-weight: 300;
-    resize: none;
-}
-
-.contactform .inputboite input[type="submit"] {
-    font-size: 1em;
-    font-weight: 700;
-    color: #fff;
-    background: #0dcc50;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-
-.contactform .inputboite input[type="submit"]:hover {
-    background: #07b03a;
 }
 
 /* Copyright */
@@ -470,10 +428,6 @@ section {
     section {
         padding: 20px;
     }
-
-    .contactform {
-        margin-left: 10%;
-    }
 }
 
 @media (max-width: 768px) {
@@ -484,14 +438,7 @@ section {
     .logo {
         font-size: 1.5em; /* Réduction de la taille du logo */
     }
-}
 
-/* Ajout d'un état sticky pour rendre le header plus visible lors du défilement */
-header.sticky {
-    background: rgba(0, 0, 0, 0.9); /* Fond légèrement plus opaque */
-    padding: 15px 30px; /* Ajustement du padding lorsqu'il devient sticky */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Ombre pour le header sticky */
-}
     .banniere .contenu h2 {
         font-size: 1.8em;
     }
@@ -503,46 +450,45 @@ header.sticky {
     .temoignage h2 {
         font-size: 1.2em;
     }
+}
 
-    .contactform {
-        margin-left: 5%;
-    }
-    .footer-section {
-        text-align: center;
-        padding: 20px;
-        background: #333;
-        color: #fff;
-    }
-    
-    .footer-section h3 {
-        margin-bottom: 10px;
-    }
-    
-    .socials {
-        margin-bottom: 10px;
-    }
-    
-    .socials a {
-        color: #fff;
-        font-size: 1.5em;
-        margin: 0 10px;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-    
-    .socials a:hover {
-        color: #0dcc50;
-    }
-    
-    .footer-section p {
-        margin: 0;
-    }
-    
-    .footer-section a {
-        color: #0dcc50;
-        text-decoration: none;
-    }
-    
-    .footer-section a:hover {
-        text-decoration: underline;
-    }
+/* Footer */
+.footer-section {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: #fff;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+}
+
+.socials {
+    margin-bottom: 10px;
+}
+
+.socials a {
+    color: #fff;
+    font-size: 1.5em;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.socials a:hover {
+    color: #0dcc50;
+}
+
+.footer-section p {
+    margin: 0;
+}
+
+.footer-section a {
+    color: #0dcc50;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
