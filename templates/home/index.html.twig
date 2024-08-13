@@ -18,9 +18,6 @@
         <li><a href="#room" class="nav-link"><span>N</span>otre local</a></li>
         <li><a href="#card" class="nav-link"><span>N</span>otre carte</a></li>
         <li><a href="#menu" class="nav-link"><span>N</span>os spécialités</a></li>
-        <li><a href="{{ path('avis') }}" class="nav-link">Votre Avis</a></li>
-        <li><a href="{{ path('contact_acces') }}" class="nav-link"><span>C</span>ontact & Accès</a></li>
-    </ul>
 </header>
 
 <main>
@@ -115,15 +112,15 @@
             <h2 class="titre-texte">Notre <span>C</span>arte</h2>
             <p>Découvrez l'authentique saveur d'Annaba dans chaque bouchée!</p>
         </div>
-        < class="box">
-    <div class="imbox">
-        <img id="menu-image" src="{{ asset('assets/images/menu-items/menu.jpg') }}" alt="Carte du Restaurant">
-    </div>
-    {% if isAdmin is defined and isAdmin %}
-        <div class="menu-editor">
-            <button onclick="openEditor()">Modifier le Menu</button>
-        </div>
-    {% endif %}
+        <div class="box">
+            <div class="imbox">
+                <img id="menu-image" src="{{ asset('assets/images/menu-items/menu.jpg') }}" alt="Carte du Restaurant">
+            </div>
+            {% if isAdmin is defined and isAdmin %}
+                <div class="menu-editor">
+                    <button onclick="openEditor()">Modifier le Menu</button>
+                </div>
+            {% endif %}
         </div>
     </section>
 
@@ -162,28 +159,28 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
-        <!-- Footer Content -->
-        <div class="footer-content container">
-            <div class="footer-contact">
-                <h3>Contactez-nous</h3>
-                <p>Adresse : 123 Rue de Lyon, 69000 Lyon</p>
-                <p>Téléphone : +33 1 23 45 67 89</p>
-                <p>Email : <a href="mailto:contact@lebonoit.fr">contact@lebonoit.fr</a></p>
-            </div>
-            <div class="footer-social">
-                <h3>Suivez-nous</h3>
-                <div class="socials">
-                    <a href="https://www.facebook.com/lebonoit" target="_blank" class="fab fa-facebook-f" aria-label="Facebook"></a>
-                    <a href="https://www.instagram.com/lebonoit" target="_blank" class="fab fa-instagram" aria-label="Instagram"></a>
-                    <a href="https://twitter.com/lebonoit" target="_blank" class="fab fa-twitter" aria-label="Twitter"></a>
-                </div>
+    <div class="footer-content container">
+        <div class="footer-contact">
+            <h3><a href="{{ path('contact') }}">Contactez-nous</a></h3>
+            <p>Adresse : 123 Rue de Lyon, 69000 Lyon</p>
+            <p>Téléphone : +33 1 23 45 67 89</p>
+            <p>Email : <a href="mailto:contact@lebonoit.fr">contact@lebonoit.fr</a></p>
+        </div>
+        <div class="footer-social">
+            <h3>Suivez-nous</h3>
+            <div class="socials">
+                <a href="https://www.facebook.com/lebonoit" target="_blank" class="fab fa-facebook-f" aria-label="Facebook"></a>
+                <a href="https://www.instagram.com/lebonoit" target="_blank" class="fab fa-instagram" aria-label="Instagram"></a>
+                <a href="https://twitter.com/lebonoit" target="_blank" class="fab fa-twitter" aria-label="Twitter"></a>
             </div>
         </div>
-
-        <!-- Newsletter Section -->
-        <section class="newsletter">
+        <div class="footer-feedback">
+            <h3><a href="{{ path('avis') }}">Votre Avis</a></h3>
+            <p>Nous aimerions connaître votre opinion !</p>
+        </div>
+    </div>
+    <section class="newsletter">
             <div class="container">
                 <h2 class="titre-texte">Inscrivez-vous à notre <span>N</span>ewsletter</h2>
                 <p>Recevez les dernières nouvelles et offres exclusives directement dans votre boîte de réception.</p>
@@ -193,6 +190,11 @@
                 </form>
             </div>
         </section>
+</footer>
+
+
+        <!-- Newsletter Section -->
+        
 
         <!-- Footer Bottom -->
         <div class="footer-bottom">

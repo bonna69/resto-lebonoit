@@ -1,128 +1,66 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Gestion du menu toggle
-    const menuToggle = document.querySelector('.menuToggle');
-    const navbar = document.querySelector('.navbar');
-
-    if (menuToggle && navbar) {
-        menuToggle.addEventListener('click', () => {
-            toggleMenu();
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    // Afficher la bannière de consentement aux cookies si non accepté
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookie-banner')?.style.display = 'block';
     }
 
-    function toggleMenu() {
-        if (navbar) {
-            navbar.classList.toggle('open');
-            menuToggle.classList.toggle('active');
-        }
-    }
-
-    // Gestion du modal de réservation
-    const reservationModal = document.getElementById('reservationModal');
-    const reservationButtons = document.querySelectorAll('.book_button');
-    const closeModalButton = reservationModal ? reservationModal.querySelector('.close') : null;
-
-    if (reservationButtons.length > 0) {
-        reservationButtons.forEach(button => {
-            button.addEventListener('click', event => {
-                event.preventDefault();
-                if (reservationModal) {
-                    reservationModal.style.display = 'block';
-                }
-            });
-        });
-    }
-
-    if (closeModalButton) {
-        closeModalButton.addEventListener('click', () => {
-            if (reservationModal) {
-                reservationModal.style.display = 'none';
-            }
-        });
-    }
-
-    window.addEventListener('click', event => {
-        if (event.target === reservationModal) {
-            reservationModal.style.display = 'none';
-        }
-    });
-
-    // Défilement fluide pour les liens internes
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', e => {
-            e.preventDefault();
-            const targetElement = document.getElementById(anchor.getAttribute('href').substring(1));
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
+    // Gestion des modales
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.querySelector('.close')?.addEventListener('click', () => {
+            modal.style.display = 'none';
         });
     });
 
-    // Gestion de la visibilité de la navbar au défilement
-    const header = document.querySelector('header');
-    let lastScrollTop = 0;
+    // Formulaire de réservation
+    document.getElementById('reservationForm')?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        // Ajoutez ici votre logique de soumission de formulaire
+        console.log('Réservation effectuée');
+    });
 
-    if (header) {
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    // Initialisation de la carte Leaflet
+    if (document.getElementById('map')) {
+        var map = L.map('map').setView([45.75, 4.85], 13); // Coordonnées pour Lyon, France
 
-            if (scrollTop > lastScrollTop) {
-                header.classList.add('hidden');
-            } else {
-                header.classList.remove('hidden');
-            }
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-            lastScrollTop = scrollTop;
-        });
-    }
+        var marker = L.marker([45.75, 4.85]).addTo(map); // Marqueur pour Lyon, France
 
-    // Gestion de la bannière de consentement aux cookies
-    function checkCookieConsent() {
-        if (!localStorage.getItem('cookie-consent')) {
-            document.getElementById('cookie-banner').style.display = 'block';
-        }
-    }
-
-    function acceptCookies() {
-        localStorage.setItem('cookie-consent', 'true');
-        document.getElementById('cookie-banner').style.display = 'none';
-    }
-
-    checkCookieConsent();
-
-    const acceptButton = document.querySelector('#cookie-banner button');
-    if (acceptButton) {
-        acceptButton.addEventListener('click', acceptCookies);
-    }
-
-    // Gestion de l'éditeur de menu
-    function openEditor() {
-        document.getElementById('editor-modal').style.display = 'block';
-    }
-
-    function closeEditor() {
-        document.getElementById('editor-modal').style.display = 'none';
-    }
-
-    // Ajouter des écouteurs d'événements pour ouvrir et fermer l'éditeur de menu
-    const editMenuButton = document.querySelector('.menu-editor button');
-    const editorModal = document.getElementById('editor-modal');
-
-    if (editMenuButton) {
-        editMenuButton.addEventListener('click', openEditor);
-    }
-
-    if (editorModal) {
-        const closeEditorButton = editorModal.querySelector('.close');
-        if (closeEditorButton) {
-            closeEditorButton.addEventListener('click', closeEditor);
-        }
-
-        window.addEventListener('click', event => {
-            if (event.target === editorModal) {
-                closeEditor();
-            }
-        });
+        marker.bindPopup("<b>Nous sommes ici !</b><br>Adresse de votre entreprise.").openPopup();
     }
 });
+
+// Fonction pour accepter les cookies
+function acceptCookies() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    document.getElementById('cookie-banner')?.style.display = 'none';
+}
+
+// Fonction pour ouvrir la modale de contact
+function openContactModal() {
+    document.getElementById('contactModal')?.style.display = 'block';
+}
+
+// Fonction pour fermer la modale de contact
+function closeContactModal() {
+    document.getElementById('contactModal')?.style.display = 'none';
+}
+
+// Fonction pour ouvrir la modale de réservation
+function openReservationModal() {
+    document.getElementById('reservationModal')?.style.display = 'block';
+}
+
+// Fonction pour fermer toutes les modales
+function closeModal() {
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.style.display = 'none';
+    });
+}
+
+// Fonction pour afficher/cacher le menu
+function toggleMenu() {
+    document.querySelector('.navbar')?.classList.toggle('show');
+}

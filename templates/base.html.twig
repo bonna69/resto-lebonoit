@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     <title>{% block title %}My Symfony App{% endblock %}</title>
-    {% block stylesheets %}
-        {# Ici vous pouvez ajouter des styles spécifiques à la page #}
-    {% endblock %}
+    {% block stylesheets %}{% endblock %}
 </head>
 <body>
     <header>
@@ -17,15 +17,14 @@
         </nav>
         <div class="region-header">
             <a href="#" class="map_button"></a>
-        </div> 
+        </div>
     </header>
 
     <main>
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Bannière de consentement aux cookies -->
-    <div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: white; padding: 10px; text-align: center;">
+    <div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: white; padding: 10px; text-align: center; z-index: 1000;">
         <p>
             Nous utilisons des cookies pour améliorer votre expérience sur notre site. 
             <a href="{{ path('app_home_page') }}" style="color: #66ccff;">En savoir plus</a>
@@ -35,6 +34,58 @@
         </button>
     </div>
 
-    <script src="{{ asset('scripts/app.js') }}"></script>
+    <!-- Modals -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeContactModal()">&times;</span>
+            <div id="contactModalBody">
+                <!-- Contenu de la modal sera chargé ici -->
+            </div>
+        </div>
+    </div>
+
+    <div id="reservationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Réservez une Table</h2>
+            <form id="reservationForm" method="post">
+                <!-- Form Fields -->
+                <div class="form-group">
+                    <label for="name">Nom:</label>
+                    <input type="text" name="name" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Téléphone:</label>
+                    <input type="tel" name="phone" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" name="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Heure:</label>
+                    <input type="time" name="time" id="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Nombre de personnes:</label>
+                    <input type="number" name="guests" id="guests" min="1" required>
+                </div>
+                <input type="submit" value="Réserver">
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+    </footer>
+
+    {% block javascripts %}
+        <script src="{{ asset('scripts/app.js') }}"></script>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    {% endblock %}
 </body>
 </html>

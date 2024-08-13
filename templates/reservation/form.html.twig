@@ -1,65 +1,61 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-    <title>Réservation</title>
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservation{% endblock %}
+
+{% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('styles/reservation.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h2 class="title">Partageons plus qu'une cuisine</h2>
-        <p>Hâte de vous voir au Bônoit! ♥️
-         Un agréable moment au Bônoit c’est arriver à l’heure, . toute réservation prise pour le repas de 18h30-19h sera aimablement demandé de libérer la table à 20h45 pour le service suivant 21h00. nous prévenir si poussettes, PMR, allergies*
-         Veuillez verifier votre adresse mail pour confirmatio.</p>
-        {{ form_start(form) }}
-            <div class="form-group">
-                {{ form_label(form.name) }}
-                {{ form_widget(form.name) }}
-            </div>
+{% endblock %}
 
-            <div class="form-group">
-                {{ form_label(form.firstname) }}
-                {{ form_widget(form.firstname) }}
-            </div>
+{% block content %}
+<div class="container">
+    <h2 class="title">Partageons plus qu'une cuisine</h2>
+    <p>Hâte de vous voir au Bônoit! ♥️ Un agréable moment au Bônoit c’est arriver à l’heure, toute réservation prise pour le repas de 18h30-19h sera aimablement demandée de libérer la table à 20h45 pour le service suivant 21h00. Veuillez nous prévenir si vous avez des poussettes, des PMR, ou des allergies. Veuillez vérifier votre adresse mail pour confirmation.</p>
+    {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
 
-            <div class="form-group">
-                {{ form_label(form.email) }}
-                {{ form_widget(form.email) }}
-            </div>
+        <div class="form-group">
+            {{ form_label(form.firstname) }}
+            {{ form_widget(form.firstname) }}
+        </div>
 
-            <div class="form-group">
-                {{ form_label(form.phone) }}
-                {{ form_widget(form.phone) }}
-            </div>
+        <div class="form-group">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
 
-            <div class="form-group">
-                {{ form_label(form.date) }}
-                {{ form_widget(form.date) }}
-            </div>
+        <div class="form-group">
+            {{ form_label(form.phone) }}
+            {{ form_widget(form.phone) }}
+        </div>
 
-            <div class="form-group">
-                {{ form_label(form.time) }}
-                {{ form_widget(form.time) }}
-            </div>
+        <div class="form-group">
+            {{ form_label(form.date) }}
+            {{ form_widget(form.date) }}
+        </div>
 
-            <div class="form-group">
-                {{ form_label(form.number_of_persons) }}
-                {{ form_widget(form.number_of_persons) }}
-            </div>
+        <div class="form-group">
+            {{ form_label(form.time) }}
+            {{ form_widget(form.time) }}
+        </div>
 
-            <div class="form-group">
-                {{ form_label(form.special_requests) }}
-                {{ form_widget(form.special_requests) }}
-            </div>
+        <div class="form-group">
+            {{ form_label(form.number_of_persons) }}
+            {{ form_widget(form.number_of_persons) }}
+        </div>
 
-            <div class="form-group">
-                {{ form_widget(form.submit) }}
-            </div>
-        {{ form_end(form) }}
+        <div class="form-group">
+            {{ form_label(form.special_requests) }}
+            {{ form_widget(form.special_requests) }}
+        </div>
 
-        <a href="{{ path('app_home_page') }}" class="button retour-button">Retour à l'accueil</a>
-    </div>
-</body>
-</html>
+        <div class="form-group">
+            {{ form_widget(form.submit) }}
+        </div>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_home_page') }}" class="button retour-button">Retour à l'accueil</a>
+</div>
+{% endblock %}

@@ -7,22 +7,21 @@
 {% endblock %}
 
 {% block content %}
-    <section class="menu-section">
-        <h2>Menu: {{ category }}</h2>
-        <div class="menu-container">
-            {% for item in menuItems %}
-                <div class="menu-item">
-                    {% if item.image %}
-                        <img src="{{ asset('images/' ~ item.image) }}" alt="{{ item.name }}" class="menu-item-image">
-                    {% endif %}
-                    <h3 class="menu-item-title">{{ item.name }}</h3>
-                    <p class="menu-item-description">{{ item.description }}</p>
-                    <p class="menu-item-price">{{ item.price }}€</p>
-                </div>
-            {% else %}
-                <p>No menu items available.</p>
-            {% endfor %}
-        </div>
-    </section>
+<section class="menu-section">
+    <h2>Menu: {{ category }}</h2>
+    <div class="menu-container">
+        {% for item in menuItems %}
+            <div class="menu-item">
+                {% if item.image %}
+                    <img src="{{ asset('images/' ~ item.image) }}" alt="{{ item.name }}" class="menu-item-image">
+                {% endif %}
+                <h3 class="menu-item-title">{{ item.name }}</h3>
+                <p class="menu-item-description">{{ item.description }}</p>
+                <p class="menu-item-price">{{ item.price }}€</p>
+            </div>
+        {% else %}
+            <p>No menu items available.</p>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}
-

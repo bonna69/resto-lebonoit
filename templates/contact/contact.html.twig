@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez-nous{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/contact.css') }}"> 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+{% endblock %}
+
+{% block content %}
+<div class="contact-container">
+    <div class="contact-form"> 
+        <h2>Contactez-nous</h2>
+        {{ form_start(form) }}
+            {{ form_row(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+            {{ form_row(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+            {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Votre adresse email'}}) }}
+            {{ form_row(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
+            {{ form_row(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Message'}}) }}
+            {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+        {{ form_end(form) }}
+
+        <p class="legal-text">
+            Selon l'article L.223-2 du code de la consommation, il est rappelé que le consommateur peut user de son droit à s'inscrire sur la liste d'opposition au démarchage téléphonique bloctel : bloctel.gouv.fr
+        </p>
+    </div>
+
+    <div class="map-container">
+        <div id="map" class="map"></div>
+    </div>
+</div>
+
+<script>
+    var map = L.map('map').setView([48.8566, 2.3522], 13); // Coordonnées pour Paris, France (à modifier)
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var marker = L.marker([48.8566, 2.3522]).addTo(map); // Marqueur pour Paris, France (à modifier)
+
+    marker.bindPopup("<b>Nous sommes ici !</b><br>Adresse de votre entreprise.").openPopup();
+</script>
+{% endblock %}

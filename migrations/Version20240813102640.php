@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240809082528 extends AbstractMigration
+final class Version20240813102640 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,14 +20,12 @@ final class Version20240809082528 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE contact_access CHANGE id id INT AUTO_INCREMENT NOT NULL');
-        $this->addSql('ALTER TABLE menu_items ADD image VARCHAR(255) DEFAULT NULL');
+        $this->addSql('CREATE TABLE contact (id INT AUTO_INCREMENT NOT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, phone VARCHAR(20) DEFAULT NULL, message LONGTEXT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE menu_items DROP image');
-        $this->addSql('ALTER TABLE contact_access CHANGE id id INT UNSIGNED AUTO_INCREMENT NOT NULL');
+        $this->addSql('DROP TABLE contact');
     }
 }
