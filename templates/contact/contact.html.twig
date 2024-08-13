@@ -13,37 +13,60 @@
 {% endblock %}
 
 {% block content %}
-<div class="contact-container">
-    <div class="contact-form"> 
-        <h2>Contactez-nous</h2>
-        {{ form_start(form) }}
-            {{ form_row(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
-            {{ form_row(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
-            {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Votre adresse email'}}) }}
-            {{ form_row(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
-            {{ form_row(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Message'}}) }}
-            {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
-        {{ form_end(form) }}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="contact-form bg-dark text-white p-4 rounded">
+                <h2>Contactez-nous</h2>
+                {{ form_start(form) }}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_row(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form_row(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Votre adresse email'}}) }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form_row(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Message'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
 
-        <p class="legal-text">
-            Selon l'article L.223-2 du code de la consommation, il est rappelé que le consommateur peut user de son droit à s'inscrire sur la liste d'opposition au démarchage téléphonique bloctel : bloctel.gouv.fr
-        </p>
-    </div>
-
-    <div class="map-container">
-        <div id="map" class="map"></div>
+        <div class="col-md-6">
+            <div class="map-container">
+                <div id="map" class="map"></div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    var map = L.map('map').setView([48.8566, 2.3522], 13); // Coordonnées pour Paris, France (à modifier)
+    // Coordonnées pour 123 rue Ney, 69006 Lyon
+    var latitude = 45.7617;
+    var longitude = 4.8448;
+    var zoomLevel = 15; // Niveau de zoom ajusté pour mieux voir l'adresse
+
+    var map = L.map('map').setView([latitude, longitude], zoomLevel);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var marker = L.marker([48.8566, 2.3522]).addTo(map); // Marqueur pour Paris, France (à modifier)
+    var marker = L.marker([latitude, longitude]).addTo(map);
 
-    marker.bindPopup("<b>Nous sommes ici !</b><br>Adresse de votre entreprise.").openPopup();
+    marker.bindPopup("<b>Nous sommes ici !</b><br>123 rue Ney, 69006 Lyon").openPopup();
 </script>
+
+<a href="{{ path('app_home_page') }}" class="button retour-button">Retour à l'accueil</a>
 {% endblock %}

@@ -44,47 +44,12 @@
         </div>
     </div>
 
-    <div id="reservationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Réservez une Table</h2>
-            <form id="reservationForm" method="post">
-                <!-- Form Fields -->
-                <div class="form-group">
-                    <label for="name">Nom:</label>
-                    <input type="text" name="name" id="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Téléphone:</label>
-                    <input type="tel" name="phone" id="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="date">Date:</label>
-                    <input type="date" name="date" id="date" required>
-                </div>
-                <div class="form-group">
-                    <label for="time">Heure:</label>
-                    <input type="time" name="time" id="time" required>
-                </div>
-                <div class="form-group">
-                    <label for="guests">Nombre de personnes:</label>
-                    <input type="number" name="guests" id="guests" min="1" required>
-                </div>
-                <input type="submit" value="Réserver">
-            </form>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer>
     </footer>
 
     {% block javascripts %}
-        <script src="{{ asset('scripts/app.js') }}"></script>
+        <script src="{{ asset('scripts/app.js') }}"></scrip>
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     {% endblock %}
 </body>

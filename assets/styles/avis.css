@@ -1,203 +1,75 @@
+/* Général */
 body {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.559); 
-    color: #fff;
-    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.8); /* Gris foncé */
+    color: #fff; /* Blanc */
 }
 
-.container {
-    background-color: transparent;
-    padding: 2em;
-    margin-top: 150px;
-    margin-block-end: 200px;
-    border-radius: 8px;
-    box-shadow: 0 5px 10px #07b03a;
+h1, h2 {
+    color: #222; /* Gris très foncé */
+}
+
+a {
+    color: #0dcc50; /* Vert clair */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Section Hero */
+.hero-section {
+    background-color: #fff; /* Blanc */
+    padding: 50px 0;
     text-align: center;
-    max-width: 1000px; /* Ajuste la largeur maximale du conteneur */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Section Avis */
 .avis-form-section {
-    display: flex;
-    justify-content: space-between;
-    background: #000000;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #07b03a;
+    padding: 50px 0;
+    color: #333; /* Gris foncé */
 }
 
 .form-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.form-content h2 {
-    font-family: 'Merriweather', serif;
-    font-size: 18px;
-    color: #07b03a; /* Couleur dorée */
-    text-align: center;
-    margin-bottom: 20px; /* Espace en bas du titre */
-}
-
-.form-content p {
-    font-size: 14px;
-    color: rgba(252, 252, 252, 0.9); /* Couleur grise clair */
-    text-align: center;
-    margin-bottom: 10px; /* Espace en bas du sous-titre */
-}
-
-.form-content {
-    width: 48%;
-}
-
-.map-container {
-    width: 48%;
-    background: #000000;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #07b03a;
-    overflow: hidden;
-}
-
-.map-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.form-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    flex: 1;
-    margin: 0 10px;
-}
-
-.form-group.full-width {
-    flex: 1 1 100%;
-    margin: 0 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff; /* Blanc */
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #ffffff;
+    color: #333; /* Gris foncé */
 }
 
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #8e8e8e;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #07b03a; /* Couleur de fond des champs de formulaire */
-    color: #ffffff;
-}
-
+.form-group input,
 .form-group textarea {
-    resize: vertical;
-    height: 100px;
+    background-color: #f0f0f0; /* Gris très clair */
+    border: 1px solid #ccc; /* Gris moyen */
+    border-radius: 4px;
+    padding: 10px;
+    color: #333; /* Gris foncé */
 }
 
 .submit-button {
-    background-color: #07b03a; /* Couleur du bouton de soumission */
-    color: #ffffff;
-    border: none;
-    padding: 15px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-.retour-button {
-    display: block;
-    text-align: center;
-    margin: 20px auto 0;
-    padding: 10px 20px;
-    background-color: #07b03a; /* Couleur du bouton retour */
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    box-shadow: 0 5px 10px #07b03a;
-}
-
-.submit-button:hover, .retour-button:hover {
-    background-color: #0d9b4f; /* Couleur légèrement plus foncée pour le survol */
-}
-/* Styles pour la modal */
-.modal {
-    display: none; /* Masquer la modal par défaut */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 5px;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.form-row {
-    margin-bottom: 15px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group.full-width {
-    width: 100%;
-}
-
-.submit-button {
-    background-color: #07b03a; /* Couleur du bouton de soumission */
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
+    background-color: #0dcc50; /* Vert clair */
+    color: #fff; /* Blanc */
 }
 
 .submit-button:hover {
-    background-color: #0d9b4f;
+    background-color: #07b03a; /* Vert foncé */
+}
+
+/* Bouton Retour */
+.retour-button {
+    background-color: #0dcc50; /* Vert clair */
+    color: #fff; /* Blanc */
+}
+
+.retour-button:hover {
+    background-color: #07b03a; /* Vert foncé */
 }

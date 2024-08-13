@@ -18,6 +18,7 @@
         <li><a href="#room" class="nav-link"><span>N</span>otre local</a></li>
         <li><a href="#card" class="nav-link"><span>N</span>otre carte</a></li>
         <li><a href="#menu" class="nav-link"><span>N</span>os spécialités</a></li>
+    </ul>
 </header>
 
 <main>
@@ -29,7 +30,7 @@
                 Un restaurant qui se réfère à la cuisine de la ville d'Annaba, une ville côtière située dans le nord-est de l'Algérie. La cuisine annabie est riche en saveurs méditerranéennes et arabes, avec une forte influence de la mer.
             </p>
             <a href="#menu" class="custom-button btn1">Goûtez Annaba</a>
-            <a href="#reservationModal" class="custom-button book_button">Réservation</a>
+            <a href="reservation" class="custom-button book_button">Réservation</a>
         </div>
     </section>
 
@@ -51,7 +52,7 @@
             </div>
             <div class="col50">
                 <div class="img">
-                    <img src="{{ asset('assets/images/menu-items/entrees/bourek-annabi.jpg') }}" alt="Bourek Annabi">
+                    <img src="{{ asset('assets/images/menu-items/entrées/bourek-annabi.jpg') }}" alt="Bourek Annabi">
                 </div>
             </div>
         </div>
@@ -63,10 +64,18 @@
             <p>La mer, le soleil, et les saveurs d'Annaba.</p>
         </div>
         <div class="contenu">
-            {% for category in ['salades', 'entrees', 'soupes', 'poissons', 'pates', 'couscous', 'viandes', 'desserts'] %}
+            {% for category, image_file in {
+                'salades': 'hmiss.jpeg',
+                'entrées': 'bourek.jpg',
+                'soupes': 'barkouks.jpg',
+                'poissons': 'filet de perche.jpg',
+                'pâtes': 'cha5chou5a.jpg',
+                'couscous': 'couscous.jpg',
+                'viandes': 'bouzelouf.jpg',
+                'dessert': 'gateau.jpg'
+            } %}
                 <a href="{{ path('app_menu_items_by_category', {'category': category}) }}" class="box" data-category="{{ category|capitalize }}">
                     <div class="imbox">
-                        {% set image_file = category == 'pates' ? 'cha5chou5a.jpg' : category ~ '.jpg' %}
                         <img src="{{ asset('assets/images/menu-items/' ~ category ~ '/' ~ image_file) }}" alt="Nos {{ category|capitalize }}">
                     </div>
                     <div class="text">
@@ -160,27 +169,27 @@
     </div>
 
     <footer class="footer">
-    <div class="footer-content container">
-        <div class="footer-contact">
-            <h3><a href="{{ path('contact') }}">Contactez-nous</a></h3>
-            <p>Adresse : 123 Rue de Lyon, 69000 Lyon</p>
-            <p>Téléphone : +33 1 23 45 67 89</p>
-            <p>Email : <a href="mailto:contact@lebonoit.fr">contact@lebonoit.fr</a></p>
-        </div>
-        <div class="footer-social">
-            <h3>Suivez-nous</h3>
-            <div class="socials">
-                <a href="https://www.facebook.com/lebonoit" target="_blank" class="fab fa-facebook-f" aria-label="Facebook"></a>
-                <a href="https://www.instagram.com/lebonoit" target="_blank" class="fab fa-instagram" aria-label="Instagram"></a>
-                <a href="https://twitter.com/lebonoit" target="_blank" class="fab fa-twitter" aria-label="Twitter"></a>
+        <div class="footer-content container">
+            <div class="footer-contact">
+                <h3><a href="{{ path('contact') }}">Contactez-nous</a></h3>
+                <p>Adresse : 123 Rue Ney, 69006 Lyon</p>
+                <p>Téléphone : +33 1 23 45 67 89</p>
+                <p>Email : <a href="mailto:contact@lebonoit.fr">contact@lebonoit.fr</a></p>
+            </div>
+            <div class="footer-social">
+                <h3>Suivez-nous</h3>
+                <div class="socials">
+                    <a href="https://www.facebook.com/lebonoit" target="_blank" class="fab fa-facebook-f" aria-label="Facebook"></a>
+                    <a href="https://www.instagram.com/lebonoit" target="_blank" class="fab fa-instagram" aria-label="Instagram"></a>
+                    <a href="https://twitter.com/lebonoit" target="_blank" class="fab fa-twitter" aria-label="Twitter"></a>
+                </div>
+            </div>
+            <div class="footer-feedback">
+                <h3><a href="{{ path('avis') }}">Votre Avis</a></h3>
+                <p>Nous aimerions connaître votre opinion !</p>
             </div>
         </div>
-        <div class="footer-feedback">
-            <h3><a href="{{ path('avis') }}">Votre Avis</a></h3>
-            <p>Nous aimerions connaître votre opinion !</p>
-        </div>
-    </div>
-    <section class="newsletter">
+        <section class="newsletter">
             <div class="container">
                 <h2 class="titre-texte">Inscrivez-vous à notre <span>N</span>ewsletter</h2>
                 <p>Recevez les dernières nouvelles et offres exclusives directement dans votre boîte de réception.</p>
@@ -190,12 +199,6 @@
                 </form>
             </div>
         </section>
-</footer>
-
-
-        <!-- Newsletter Section -->
-        
-
         <!-- Footer Bottom -->
         <div class="footer-bottom">
             <p>&copy; 2024 <a href="#">Le Bônoit</a>. Tous droits réservés.</p>
