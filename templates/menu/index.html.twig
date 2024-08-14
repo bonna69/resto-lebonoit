@@ -1,0 +1,28 @@
+<section class="menu" id="menu">
+    <div class="titre">
+        <h2 class="titre-texte">Nos <span>S</span>pécialités</h2>
+        <p>La mer, le soleil, et les saveurs d'Annaba.</p>
+    </div>
+    <div class="contenu">
+        {% for category, image_file in {
+            'salades': 'hmiss.jpeg',
+            'entrées': 'bourek.jpg',
+            'soupes': 'soupe-hrira.jpg',
+            'poissons': 'filet de perche.jpg',
+            'pâtes': 'cha5chou5a.jpg',
+            'couscous': 'couscous viande.jpg',
+            'viandes': 'mergez.jpg',
+            'dessert': 'kalb.jpg',
+            'sauces': 'gnaouia-sauce-gombos.jpg',
+        } %}
+            <a href="{{ path('app_menu_items_by_category', { category: category }) }}" class="box" data-category="{{ category|capitalize }}">
+                <div class="imbox">
+                    <img src="{{ asset('assets/images/menu-items/' ~ category ~ '/' ~ image_file) }}" alt="Nos {{ category|capitalize }}">
+                </div>
+                <div class="text">
+                    <h3>Nos {{ category|capitalize }}</h3>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section>

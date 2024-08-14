@@ -3,18 +3,63 @@
 {% block title %}Carte du Restaurant{% endblock %}
 
 {% block content %}
-<section class="contenu">
-    <div class="box">
-        <div class="imbox">
-            <img id="menu-image" src="{{ menuImage }}" alt="Carte du Restaurant">
-        </div>
-        {% if isAdmin %}
-        <div class="menu-editor">
-            <button onclick="openEditor()">Modifier le Menu</button>
-        </div>
+<div class="container my-5">
+    <h2 class="text-center mb-5">Carte du Restaurant</h2>
+
+    <div class="row">
+        {% if firstFeaturedDish %}
+            <div class="center">
+                <div class="card text-center mb-5 border border-dark">
+                    <div class="card-header text-dark">
+                        Plat en vedette
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ path('menu_item_detail', { 'id': firstFeaturedDish.id }) }}">
+                                {{ firstFeaturedDish.name }}
+                            </a>
+                        </h5>
+                        <p class="card-text">{{ firstFeaturedDish.description }}</p>
+                        <a href="{{ path('menu_item_detail', { 'id': firstFeaturedDish.id }) }}" class="btn btn-primary">Voir plus</a>
+                    </div>
+                    <div class="card-footer text-muted py-1 text-center pt-3">
+                        <p>
+                            <span class="text-dark">Ajouté le :</span>
+                            <span class="text-dark"> {{ firstFeaturedDish.createdAt ? firstFeaturedDish.createdAt|date('d/m/Y') : 'Non disponible' }}</span>
+                            <span class="text-dark">Mis à jour le :</span>
+                            <span class="text-dark"> {{ firstFeaturedDish.updatedAt ? firstFeaturedDish.updatedAt|date('d/m/Y') : 'Non disponible' }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center">Aucun plat en vedette trouvé.</p>
         {% endif %}
     </div>
-</section>
+
+    {% if notFeaturedDishes is defined and notFeaturedDishes|length > 0 %}
+        <h2 class="text-center my-4 mb-5">Autres Plats</h2>
+        <div class="row">
+            {% for dish in notFeaturedDishes %}
+                <div class="col-md-4 mb-4">
+                    <div class="card border border-dark">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('menu_item_detail', { 'id': dish.id }) }}">
+                                    {{ dish.name }}
+                                </a>
+                            </h5>
+                            <p class="card-text">{{ dish.description }}</p>
+                            <a href="{{ path('menu_item_detail', { 'id': dish.id }) }}" class="btn btn-primary">Voir plus</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-center">Aucun autre plat trouvé.</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 
 {% if isAdmin %}
 <div id="editor-modal" class="modal">

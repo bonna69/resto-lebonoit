@@ -2,44 +2,84 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Carte;
+use App\Repository\CarteRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\CarteRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CarteController extends AbstractController
 {
-    /**
-     * @Route("/menu", name="menu")
-     */
+    #[Route('/menu', name: 'menu_index', methods: ['GET'])]
     public function index(CarteRepository $carteRepo): Response
     {
-        // Exemple de contrôleur Symfony
-        // Logiques pour déterminer si l'utilisateur est un admin
-        $isAdmin = $this->isGranted('ROLE_ADMIN');
+        // Retrieve all cartes (settings)
+        $cartes = $carteRepo->findAll();
 
-        // Récupérer l'URL de l'image du menu à partir de la base de données ou définir un chemin par défaut
-        $menuImage = $carteRepo->getSettingValue('menu_image_url') ?? 'assets/images/menu-items/menu.jpg';
+        // Find the menu image URL setting
+        $menuImageCarte = $carteRepo->findOneBy(['carte_name' => 'menu_image_url']);
+        $menuImage = $menuImageCarte ? $menuImageCarte->getCarteValue() : 'assets/images/menu-items/menu.jpg';
 
         return $this->render('carte/index.html.twig', [
             'menuImage' => $menuImage,
-            'isAdmin' => $isAdmin,
+            'cartes' => $cartes,
         ]);
     }
 
-    /**
-     * @Route("/update-menu", name="update_menu", methods={"POST"})
-     */
-    public function updateMenu(Request $request, CarteRepository $carteRepo): Response
+    #[Route('/menu/new', name: 'menu_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, CarteRepository $carteRepo): Response
     {
-        // Récupérer la nouvelle URL de l'image du menu depuis la requête POST
+        $carte = new Carte();
+        $form = $this->createForm(CarteType::class, $carte);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($carte);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('menu_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('carte/new.html.twig', [
+            'carte' => $carte,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/menu/{id}/edit', name: 'menu_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Carte $carte, EntityManagerInterface $entityManager, CarteRepository $carteRepo): Response
+    {
+        $form = $this->createForm(CarteType::class, $carte);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('menu_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('carte/edit.html.twig', [
+            'carte' => $carte,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/menu/update-image', name: 'menu_update_image', methods: ['POST'])]
+    public function updateImage(Request $request, CarteRepository $carteRepo, EntityManagerInterface $entityManager): Response
+    {
+        // Get the new image URL from the request
         $newImageURL = $request->request->get('menuImage');
 
-        // Mettre à jour l'URL de l'image du menu dans la base de données
-        $carteRepo->setSettingValue('menu_image_url', $newImageURL);
+        // Find or create the menu image URL setting
+        $menuImageCarte = $carteRepo->findOneBy(['carte_name' => 'menu_image_url']) ?? new Carte();
+        $menuImageCarte->setCarteName('menu_image_url');
+        $menuImageCarte->setCarteValue($newImageURL);
 
-        // Rediriger l'utilisateur vers la page du menu après la mise à jour
-        return $this->redirectToRoute('menu');
+        $entityManager->persist($menuImageCarte);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('menu_index');
     }
 }

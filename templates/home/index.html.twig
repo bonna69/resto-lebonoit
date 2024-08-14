@@ -1,3 +1,5 @@
+{# templates/home.html.twig #}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Le Bônoit{% endblock %}
@@ -67,14 +69,16 @@
             {% for category, image_file in {
                 'salades': 'hmiss.jpeg',
                 'entrées': 'bourek.jpg',
-                'soupes': 'barkouks.jpg',
+                'soupes': 'soupe-hrira.jpg',
                 'poissons': 'filet de perche.jpg',
                 'pâtes': 'cha5chou5a.jpg',
-                'couscous': 'couscous.jpg',
-                'viandes': 'bouzelouf.jpg',
-                'dessert': 'gateau.jpg'
+                'couscous': 'couscous viande.jpg',
+                'viandes': 'mergez.jpg',
+                'dessert': 'kalb.jpg',
+                'sauces': 'gnaouia-sauce-gombos.jpg',
             } %}
-                <a href="{{ path('app_menu_items_by_category', {'category': category}) }}" class="box" data-category="{{ category|capitalize }}">
+                <a href="/menu/category/{{ category }}" class="box" data-category="{{ category|capitalize }}">
+
                     <div class="imbox">
                         <img src="{{ asset('assets/images/menu-items/' ~ category ~ '/' ~ image_file) }}" alt="Nos {{ category|capitalize }}">
                     </div>
@@ -115,7 +119,6 @@
         </div>
     </section>
 
-    <!-- Section Carte -->
     <section class="carte" id="card">
         <div class="titre blanc">
             <h2 class="titre-texte">Notre <span>C</span>arte</h2>
@@ -199,13 +202,8 @@
                 </form>
             </div>
         </section>
-        <!-- Footer Bottom -->
         <div class="footer-bottom">
             <p>&copy; 2024 <a href="#">Le Bônoit</a>. Tous droits réservés.</p>
         </div>
     </footer>
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('scripts/app.js') }}"></script>
 {% endblock %}
