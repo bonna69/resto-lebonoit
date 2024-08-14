@@ -19,7 +19,7 @@
         <li><a href="#about" class="nav-link"><span>A</span>propos de nous</a></li>
         <li><a href="#room" class="nav-link"><span>N</span>otre local</a></li>
         <li><a href="#card" class="nav-link"><span>N</span>otre carte</a></li>
-        <li><a href="#menu" class="nav-link"><span>N</span>os spécialités</a></li>
+        {# <li><a href="#menu" class="nav-link"><span>N</span>os spécialités</a></li> #}
     </ul>
 </header>
 
@@ -67,15 +67,16 @@
         </div>
         <div class="contenu">
             {% for category, image_file in {
-                'salades': 'hmiss.jpeg',
                 'entrées': 'bourek.jpg',
+                'salades': 'hmiss.jpeg',
                 'soupes': 'soupe-hrira.jpg',
-                'poissons': 'filet de perche.jpg',
+                'sauces': 'gnaouia-sauce-gombos.jpg',
                 'pâtes': 'cha5chou5a.jpg',
                 'couscous': 'couscous viande.jpg',
                 'viandes': 'mergez.jpg',
+                'poissons': 'filet de perche.jpg',
                 'dessert': 'kalb.jpg',
-                'sauces': 'gnaouia-sauce-gombos.jpg',
+                
             } %}
                 <a href="/menu/category/{{ category }}" class="box" data-category="{{ category|capitalize }}">
 

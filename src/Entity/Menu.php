@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use App\Repository\MenuRepository;
@@ -26,8 +25,8 @@ class Menu
     #[ORM\Column(length: 255)]
     private ?string $category = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private ?array $images = [];
 
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $is_available = true;
@@ -88,14 +87,28 @@ class Menu
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImages(): ?array
     {
-        return $this->image;
+        return $this->images;
     }
 
-    public function setImage(?string $image): static
+    public function setImages(?array $images): static
     {
-        $this->image = $image;
+        $this->images = $images;
+
+        return $this;
+    }
+
+    public function addImage(string $image): static
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    public function removeImage(string $image): static
+    {
+        $this->images = array_filter($this->images, fn($img) => $img !== $image);
 
         return $this;
     }

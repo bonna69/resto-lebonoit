@@ -1,4 +1,5 @@
 <?php
+// src/Repository/MenuRepository.php
 
 namespace App\Repository;
 
@@ -14,28 +15,30 @@ class MenuRepository extends ServiceEntityRepository
     }
 
     /**
-     * Finds menu items by category.
-     *
-     * @param string $category
-     * @return Menu[]
+     * Récupère toutes les catégories uniques disponibles dans les menus.
+     */
+    public function findAllCategories(): array
+    {
+        $result = $this->createQueryBuilder('m')
+            ->select('m.category')
+            ->distinct()
+            ->getQuery()
+            ->getScalarResult(); // Utilisez getScalarResult() pour obtenir un tableau de chaînes simples
+
+        // Transforme le tableau de tableaux en un tableau de chaînes simples
+        return array_map(fn($row) => $row['category'], $result);
+    }
+
+    /**
+     * Récupère les éléments du menu pour une catégorie spécifiée.
      */
     public function findByCategory(string $category): array
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.category = :category')
             ->setParameter('category', $category)
+            ->orderBy('m.name', 'ASC')
             ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * Finds a menu item by its ID.
-     *
-     * @param int $id
-     * @return Menu|null
-     */
-    public function findMenuById(int $id): ?Menu
-    {
-        return $this->find($id);
+            ->getResult(); // Assurez-vous que getResult() retourne un tableau d'objets Menu
     }
 }

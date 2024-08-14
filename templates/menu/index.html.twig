@@ -1,28 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block body %}
 <section class="menu" id="menu">
     <div class="titre">
         <h2 class="titre-texte">Nos <span>S</span>pécialités</h2>
         <p>La mer, le soleil, et les saveurs d'Annaba.</p>
     </div>
     <div class="contenu">
-        {% for category, image_file in {
-            'salades': 'hmiss.jpeg',
-            'entrées': 'bourek.jpg',
-            'soupes': 'soupe-hrira.jpg',
-            'poissons': 'filet de perche.jpg',
-            'pâtes': 'cha5chou5a.jpg',
-            'couscous': 'couscous viande.jpg',
-            'viandes': 'mergez.jpg',
-            'dessert': 'kalb.jpg',
-            'sauces': 'gnaouia-sauce-gombos.jpg',
-        } %}
-            <a href="{{ path('app_menu_items_by_category', { category: category }) }}" class="box" data-category="{{ category|capitalize }}">
-                <div class="imbox">
-                    <img src="{{ asset('assets/images/menu-items/' ~ category ~ '/' ~ image_file) }}" alt="Nos {{ category|capitalize }}">
-                </div>
-                <div class="text">
-                    <h3>Nos {{ category|capitalize }}</h3>
-                </div>
-            </a>
-        {% endfor %}
+        {% if categories is not empty %}
+            {% for category in categories %}
+                <a href="{{ path('menu_category', { 'category': category }) }}" class="box" data-category="{{ category|capitalize }}">
+                    <div class="imbox">
+                        <img src="{{ asset('assets/images/menu-items/' ~ category ~ '/default.jpg') }}" alt="Nos {{ category|capitalize }}">
+                    </div>
+                    <div class="text">
+                        <h3>Nos {{ category|capitalize }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>Aucune catégorie disponible.</p>
+        {% endif %}
     </div>
 </section>
+
+{% if menus is not empty %}
+    <section class="menu-items">
+        {% for menu in menus %}
+            <div class="menu-item">
+                <h3>{{ menu.name }}</h3>
+                <div class="description">{{ menu.description }}</div>
+                <div class="price">{{ menu.price }} €</div>
+
+                <div class="images">
+                    {% for image in menu.images %}
+                        <img src="{{ asset('assets/images/menu-items/' ~ menu.category ~ '/' ~ image) }}" alt="{{ menu.name }}">
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% else %}
+    <p>Aucun menu disponible pour cette catégorie.</p>
+{% endif %}
+{% endblock %}
