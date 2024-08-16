@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     <title>{% block title %}My Symfony App{% endblock %}</title>
@@ -35,7 +34,7 @@
     </div>
 
     <!-- Modals -->
-    <div id="contactModal" class="modal">
+    <div id="contactModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close" onclick="closeContactModal()">&times;</span>
             <div id="contactModalBody">
@@ -46,11 +45,12 @@
 
     <!-- Footer -->
     <footer>
+        <p>&copy; 2024 Votre Entreprise. Tous droits réservés.</p>
     </footer>
 
     {% block javascripts %}
-        <script src="{{ asset('scripts/app.js') }}"></scrip>
-        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="{{ asset('script.js') }}"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     {% endblock %}
 </body>
 </html>

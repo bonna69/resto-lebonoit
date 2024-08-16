@@ -251,7 +251,7 @@ section {
 }
 
 .menu .contenu .box .text {
-    text-align: center; 
+    text-align: center;
     padding: 0 20px 20px;
 }
 
@@ -291,36 +291,74 @@ section {
 
 /* Carte */
 .carte {
-    background-image: url(./images/Instagram.jpg);
+    background-image: url(/assets/images/Instagram.jpg);
     background-size: cover;
     background-position: center;
     padding: 100px;
     color: #fff;
 }
 
-.carte .contenu {
+.carte .titre {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.carte .titre h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #fff;
+}
+
+.carte .titre h2 span {
+    color: #0dcc50;
+    font-size: 2.5em;
+}
+
+.carte .titre p {
+    font-size: 1.2em;
+    color: #eee;
+}
+
+.carte .carte-content {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.carte .contenu .box {
-    width: 750px;
-    margin: 20px;
-    background-color: #fff;
-    color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 5px;
-    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.8);
+.carte .carte-content .image-container {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
 }
 
-.carte .contenu .box .imbox img {
+.carte .carte-content img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.menu-editor {
+    margin-top: 20px;
+}
+
+.menu-editor button {
+    background-color: #0dcc50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menu-editor button:hover {
+    background-color: #07b03a;
 }
 
 /* Contact */
@@ -358,7 +396,6 @@ section {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4); /* Noir avec transparence */
 }
 
@@ -368,6 +405,8 @@ section {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
 }
 
 .close {
@@ -383,7 +422,6 @@ section {
     text-decoration: none;
     cursor: pointer;
 }
-
 
 /* Footer */
 .footer {
@@ -514,57 +552,6 @@ section {
         text-align: center;
         margin-bottom: 20px;
     }
-}
-/* Style pour le bouton de réservation */
-.custom-button.book_button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Style pour le modal */
-.modal {
-    display: none; /* Le modal est caché par défaut */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Fond semi-transparent */
-}
-
-/* Contenu du modal */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* Centrage vertical */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Largeur du modal */
-    max-width: 600px;
-    border-radius: 10px;
-}
-
-/* Bouton de fermeture */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 @media (max-width: 768px) {

@@ -1,5 +1,3 @@
-{# templates/home.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Le Bônoit{% endblock %}
@@ -13,13 +11,12 @@
 {% block content %}
 <header>
     <a href="#" class="logo"><span>L</span>e Bônoit</a>
-    <div class="menuToggle"></div>
+    <div class="menuToggle">&#9776;</div>
     <ul class="navbar">
         <li><a href="#banner" class="nav-link"><span>A</span>ccueil</a></li>
         <li><a href="#about" class="nav-link"><span>A</span>propos de nous</a></li>
         <li><a href="#room" class="nav-link"><span>N</span>otre local</a></li>
         <li><a href="#card" class="nav-link"><span>N</span>otre carte</a></li>
-        {# <li><a href="#menu" class="nav-link"><span>N</span>os spécialités</a></li> #}
     </ul>
 </header>
 
@@ -31,8 +28,8 @@
             <p>
                 Un restaurant qui se réfère à la cuisine de la ville d'Annaba, une ville côtière située dans le nord-est de l'Algérie. La cuisine annabie est riche en saveurs méditerranéennes et arabes, avec une forte influence de la mer.
             </p>
-            <a href="#menu" class="custom-button btn1">Goûtez Annaba</a>
-            <a href="reservation" class="custom-button book_button">Réservation</a>
+            <a href="#card" class="custom-button btn1">Goûtez Annaba</a>
+            <a href="{{ path('reservation') }}" class="custom-button book_button">Réservation</a>
         </div>
     </section>
 
@@ -60,7 +57,7 @@
         </div>
     </section>
 
-    <section class="menu" id="menu">
+    <section class="menu" id="card">
         <div class="titre">
             <h2 class="titre-texte">Nos <span>S</span>pécialités</h2>
             <p>La mer, le soleil, et les saveurs d'Annaba.</p>
@@ -76,10 +73,8 @@
                 'viandes': 'mergez.jpg',
                 'poissons': 'filet de perche.jpg',
                 'dessert': 'kalb.jpg',
-                
             } %}
-                <a href="/menu/category/{{ category }}" class="box" data-category="{{ category|capitalize }}">
-
+                <a href="{{ path('menu_category', {'category': category}) }}" class="box" data-category="{{ category|capitalize }}">
                     <div class="imbox">
                         <img src="{{ asset('assets/images/menu-items/' ~ category ~ '/' ~ image_file) }}" alt="Nos {{ category|capitalize }}">
                     </div>
@@ -121,26 +116,27 @@
     </section>
 
     <section class="carte" id="card">
-        <div class="titre blanc">
-            <h2 class="titre-texte">Notre <span>C</span>arte</h2>
-            <p>Découvrez l'authentique saveur d'Annaba dans chaque bouchée!</p>
+    <div class="titre">
+        <h2 class="titre-texte">Notre <span>C</span>arte</h2>
+        <p>Découvrez l'authentique saveur d'Annaba dans chaque bouchée!</p>
+    </div>
+    <div class="carte-content">
+        <div class="image-container">
+            <img id="menu-image" src="{{ asset('assets/images/carte.jpg') }}" alt="Carte du Restaurant">
         </div>
-        <div class="box">
-            <div class="imbox">
-                <img id="menu-image" src="{{ asset('assets/images/menu-items/menu.jpg') }}" alt="Carte du Restaurant">
+        {% if isAdmin is defined and isAdmin %}
+            <div class="menu-editor">
+                <button onclick="openEditor()">Modifier le Menu</button>
             </div>
-            {% if isAdmin is defined and isAdmin %}
-                <div class="menu-editor">
-                    <button onclick="openEditor()">Modifier le Menu</button>
-                </div>
-            {% endif %}
-        </div>
-    </section>
+        {% endif %}
+    </div>
+</section>
+
 
     <!-- Modale de Réservation -->
     <div id="reservationModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close">&times;</span>
             <h2>Réservez une Table</h2>
             <form id="reservationForm" method="post">
                 <div class="form-group">
@@ -172,39 +168,44 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="footer-content container">
-            <div class="footer-contact">
-                <h3><a href="{{ path('contact') }}">Contactez-nous</a></h3>
-                <p>Adresse : 123 Rue Ney, 69006 Lyon</p>
-                <p>Téléphone : +33 1 23 45 67 89</p>
-                <p>Email : <a href="mailto:contact@lebonoit.fr">contact@lebonoit.fr</a></p>
-            </div>
-            <div class="footer-social">
-                <h3>Suivez-nous</h3>
-                <div class="socials">
-                    <a href="https://www.facebook.com/lebonoit" target="_blank" class="fab fa-facebook-f" aria-label="Facebook"></a>
-                    <a href="https://www.instagram.com/lebonoit" target="_blank" class="fab fa-instagram" aria-label="Instagram"></a>
-                    <a href="https://twitter.com/lebonoit" target="_blank" class="fab fa-twitter" aria-label="Twitter"></a>
-                </div>
-            </div>
-            <div class="footer-feedback">
-                <h3><a href="{{ path('avis') }}">Votre Avis</a></h3>
-                <p>Nous aimerions connaître votre opinion !</p>
-            </div>
-        </div>
-        <section class="newsletter">
-            <div class="container">
-                <h2 class="titre-texte">Inscrivez-vous à notre <span>N</span>ewsletter</h2>
-                <p>Recevez les dernières nouvelles et offres exclusives directement dans votre boîte de réception.</p>
-                <form action="#" method="post">
-                    <input type="email" name="email" placeholder="Votre email" required>
-                    <button type="submit" class="btn1">S'abonner</button>
-                </form>
-            </div>
-        </section>
-        <div class="footer-bottom">
-            <p>&copy; 2024 <a href="#">Le Bônoit</a>. Tous droits réservés.</p>
-        </div>
-    </footer>
 {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('script.js') }}"></script>
+{% endblock %}
+
+<footer class="footer">
+    <div class="footer-content container">
+        <div class="footer-contact">
+            <h3><a href="{{ path('contact') }}">Contactez-nous</a></h3>
+            <p>Adresse : 123 Rue Ney, 69006 Lyon</p>
+            <p>Téléphone : +33 1 23 45 67 89</p>
+            <p>Email : <a href="mailto:contact@lebonoit.fr">contact@lebonoit.fr</a></p>
+        </div>
+        <div class="footer-social">
+            <h3>Suivez-nous</h3>
+            <div class="socials">
+                <a href="https://www.facebook.com/lebonoit" target="_blank" class="fab fa-facebook-f" aria-label="Facebook"></a>
+                <a href="https://www.instagram.com/lebonoit" target="_blank" class="fab fa-instagram" aria-label="Instagram"></a>
+                <a href="https://twitter.com/lebonoit" target="_blank" class="fab fa-twitter" aria-label="Twitter"></a>
+            </div>
+        </div>
+        <div class="footer-feedback">
+            <h3><a href="{{ path('avis') }}">Votre Avis</a></h3>
+            <p>Nous aimerions connaître votre opinion !</p>
+        </div>
+    </div>
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="titre-texte">Inscrivez-vous à notre <span>N</span>ewsletter</h2>
+            <p>Recevez les dernières nouvelles et offres exclusives directement dans votre boîte de réception.</p>
+            <form action="#" method="post">
+                <input type="email" name="email" placeholder="Votre email" required>
+                <button type="submit" class="btn1">S'abonner</button>
+            </form>
+        </div>
+    </section>
+    <div class="footer-bottom">
+        <p>&copy; 2024 <a href="#">Le Bônoit</a>. Tous droits réservés.</p>
+    </div>
+</footer>

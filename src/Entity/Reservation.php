@@ -4,6 +4,7 @@ namespace App\Entity;
 use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -14,28 +15,38 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $phone = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotNull]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(length: 5)]  // Length 5 to accommodate HH:MM format
+    #[ORM\Column(length: 5)]
+    #[Assert\Regex("/^(?:[01]\d|2[0-3]):[0-5]\d$/")]
     private ?string $time = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
     private ?int $number_of_persons = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $special_requests = null;
+
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private bool $confirmed = false;
 
     public function getId(): ?int
     {
@@ -135,6 +146,17 @@ class Reservation
     {
         $this->special_requests = $special_requests;
 
+        return $this;
+    }
+
+    public function isConfirmed(): bool
+    {
+        return $this->confirmed;
+    }
+
+    public function setConfirmed(bool $confirmed): static
+    {
+        $this->confirmed = $confirmed;
         return $this;
     }
 }

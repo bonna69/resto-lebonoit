@@ -1,38 +1,55 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Sélection des éléments nécessaires
-    const reservationModal = document.getElementById('reservationModal');
-    const openModalButton = document.querySelector('.book_button');
-    const closeModalButton = reservationModal.querySelector('.close');
-    const menuToggle = document.querySelector('.menuToggle');
+// Fonction pour ouvrir la modale de réservation
+function openReservationModal() {
+    const modal = document.getElementById('reservationModal');
+    if (modal) {
+        modal.style.display = 'block';
+    } else {
+        console.error('Reservation modal not found');
+    }
+}
+
+// Fonction pour fermer la modale de réservation
+function closeReservationModal() {
+    const modal = document.getElementById('reservationModal');
+    if (modal) {
+        modal.style.display = 'none';
+    } else {
+        console.error('Reservation modal not found');
+    }
+}
+
+// Fonction pour basculer le menu
+function toggleMenu() {
     const navbar = document.querySelector('.navbar');
-
-    // Ouvrir la modale de réservation
-    openModalButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        reservationModal.style.display = 'block';
-    });
-
-    // Fermer la modale de réservation
-    closeModalButton.addEventListener('click', () => {
-        reservationModal.style.display = 'none';
-    });
-
-    // Fermer la modale si l'utilisateur clique en dehors du contenu
-    window.addEventListener('click', (event) => {
-        if (event.target === reservationModal) {
-            reservationModal.style.display = 'none';
-        }
-    });
-
-    // Gestion de l'ouverture et fermeture du menu de navigation sur mobile
-    menuToggle.addEventListener('click', () => {
+    if (navbar) {
         navbar.classList.toggle('active');
-    });
+    } else {
+        console.error('Navbar not found');
+    }
+}
 
-    // Fermer le menu de navigation si un lien est cliqué
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navbar.classList.remove('active');
-        });
+// Ajout des gestionnaires d'événements lorsque le DOM est complètement chargé
+document.addEventListener('DOMContentLoaded', () => {
+    // Gestion du menu
+    const menuToggle = document.querySelector('.menuToggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', toggleMenu);
+    } else {
+        console.error('Menu toggle not found');
+    }
+
+    // Gestion des événements pour les modales
+    const reservationModalClose = document.querySelector('#reservationModal .close');
+    if (reservationModalClose) {
+        reservationModalClose.addEventListener('click', closeReservationModal);
+    } else {
+        console.error('Reservation modal close button not found');
+    }
+
+    window.addEventListener('click', (event) => {
+        const modal = document.getElementById('reservationModal');
+        if (modal && event.target === modal) {
+            closeReservationModal();
+        }
     });
 });
