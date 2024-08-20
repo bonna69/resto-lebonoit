@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des réservations{% endblock %}
+
+{% block body %}
+    <h1>Liste des réservations</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Client</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.clientName }}</td>
+                    <td>{{ reservation.reservationDate|date('Y-m-d H:i') }}</td>
+                    <td>{{ reservation.isConfirmed ? 'Confirmée' : 'En attente' }}</td>
+                    <td>
+                        {% if not reservation.isConfirmed %}
+                            <a href="{{ path('admin_reservation_confirm', {'id': reservation.id}) }}">Confirmer</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

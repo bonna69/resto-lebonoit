@@ -1,0 +1,41 @@
+{# templates/admin/dashboard.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Admin Dashboard</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Badges</h5>
+                        <p class="card-text">Create, update, and delete badges.</p>
+                        <a href="{{ path('admin', { entity: 'Badge' }) }}" class="btn btn-primary">Go to Badges</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Journeys</h5>
+                        <p class="card-text">Create, update, and delete journeys.</p>
+                        <a href="{{ path('admin', { entity: 'Journey' }) }}" class="btn btn-primary">Go to Journeys</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Users</h5>
+                        <p class="card-text">Create, update, and delete users.</p>
+                        <a href="{{ path('admin', { entity: 'User' }) }}" class="btn btn-primary">Go to Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <div class="text-center mt-4">
+            <a href="{{ path('dashboard_index') }}" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+
+{% endblock %}
