@@ -1,7 +1,5 @@
 <?php
-
 // src/Security/UserAuthenticator.php
-
 namespace App\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -61,9 +59,10 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('dashboard_index'));
-    }    
-    
+        // Redirection après connexion
+        return new RedirectResponse($this->urlGenerator->generate('app_home_page'));
+    }
+
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);

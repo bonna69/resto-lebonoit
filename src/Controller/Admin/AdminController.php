@@ -1,5 +1,5 @@
 <?php
-// src/Controller/Admin/DashboardController.php
+// src/Controller/Admin/AdminController.php
 
 namespace App\Controller\Admin;
 
@@ -8,9 +8,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\ReservationAdmin;
 
-class DashboardController extends AbstractDashboardController
+class AdminController extends AbstractDashboardController
 {
+    #[Route('/login', name: 'login')]
+    public function login(): Response
+    {
+        return $this->render('security/login.html.twig');
+    }
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
@@ -26,9 +33,8 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // Supprimez ou commentez les lignes suivantes si vous n'avez plus besoin de ces fonctionnalités
-        // yield MenuItem::linkToCrud('Badges', 'fas fa-award', Badge::class);
-        // yield MenuItem::linkToCrud('Journeys', 'fas fa-road', Journey::class);
-        // yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
+        // Ajoutez les éléments du menu pour gérer les réservations
+        yield MenuItem::linkToCrud('Reservations', 'fas fa-calendar', ReservationAdmin::class);
+        // Ajoutez d'autres éléments de menu si nécessaire
     }
 }
