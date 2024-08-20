@@ -1,5 +1,6 @@
 <?php
 // src/Security/UserAuthenticator.php
+
 namespace App\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;

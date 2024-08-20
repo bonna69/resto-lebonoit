@@ -288,7 +288,7 @@
         }
     },
     "symfony/ux-turbo": {
-        "version": "v2.18.0"
+        "version": "v2.19.3"
     },
     "symfony/validator": {
         "version": "7.1",
@@ -316,6 +316,6 @@
         ]
     },
     "twig/extra-bundle": {
-        "version": "v3.10.0"
+        "version": "v3.11.0"
     }
 }
