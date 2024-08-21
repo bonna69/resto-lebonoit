@@ -1,34 +1,37 @@
 # config/services.yaml
 
 services:
+    # ...
+
+    # Déclaration du service UserAuthenticator
     App\Security\UserAuthenticator:
         arguments:
-            - '@router'
-            - '@request_stack'
+            - '@router'          # Injection du service Router
+            - '@request_stack'   # Injection du service RequestStack
 
-security:
-    password_hashers:
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
-    
-    providers:
-        app_user_provider:
-            entity:
-                class: App\Entity\User
-                property: email
+    # Déclaration du service pour votre entité User si ce n'est pas déjà fait
+    # Assurez-vous que ce service est correctement configuré pour être utilisé dans la configuration de sécurité
+    App\Repository\UserRepository:
+        autowire: true
+        autoconfigure: true
+        public: false
 
-    firewalls:
-        main:
-            lazy: true
-            provider: app_user_provider
-            custom_authenticator: App\Security\UserAuthenticator
-            form_login:
-                login_path: login
-                check_path: login
-                enable_csrf: true
-            logout:
-                path: logout
-                target: /
-            # Pas de point d'entrée spécifique nécessaire ici si la redirection est gérée
-            # par l'authenticator ou si le formulaire de connexion est configuré correctement
+    # Autres services...
 
-    
+    # Si vous utilisez le provider d'utilisateurs en mémoire pour des tests ou des exemples
+    # et que vous avez défini un fournisseur d'utilisateurs en mémoire
+    in_memory_user_provider:
+        class: Symfony\Component\Security\Core\User\InMemoryUserProvider
+        arguments:
+            - 
+                users:
+                    user:
+                        password: '%env(resolve:USER_PASSWORD)%'
+                        roles: ['ROLE_USER']
+                    admin:
+                        password: '%env(resolve:ADMIN_PASSWORD)%'
+                        roles: ['ROLE_ADMIN']
+
+    # ...
+
+    # Vous pouvez également configurer d'autres services nécessaires à votre application ici

@@ -1,6 +1,4 @@
 <?php
-// src/Security/UserAuthenticator.php
-
 namespace App\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -21,7 +19,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    // public const LOGIN_ROUTE = 'login';
+    public const LOGIN_ROUTE = 'login';
 
     private UrlGeneratorInterface $urlGenerator;
     private RequestStack $requestStack;
@@ -47,11 +45,11 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
-    // public function supports(Request $request): bool
-    // {
-    //     return self::LOGIN_ROUTE === $request->attributes->get('_route')
-    //         && $request->isMethod('POST');
-    // }
+    public function supports(Request $request): bool
+    {
+        return self::LOGIN_ROUTE === $request->attributes->get('_route')
+            && $request->isMethod('POST');
+    }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
@@ -59,13 +57,14 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // Redirection vers la page d'accueil après l'authentification
-        return new RedirectResponse($this->urlGenerator->generate('app_home_page'));
+        // Debugging: dump the generated URL
+        dump($this->urlGenerator->generate('/home'));
+
+        return new RedirectResponse($this->urlGenerator->generate('/home'));
     }
 
     protected function getLoginUrl(Request $request): string
     {
-        return $this->urlGenerator->generate('login');
+        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
-    
 }

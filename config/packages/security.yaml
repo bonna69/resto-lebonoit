@@ -1,35 +1,55 @@
 # config/packages/security.yaml
+
 security:
+    # Configuration de l'encodage des mots de passe
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
+    # Fournisseurs d'utilisateurs
     providers:
-        app_user_provider:
-            entity:
-                class: App\Entity\User
-                property: email
+        # Fournisseur d'utilisateurs en mémoire
+        in_memory:
+            memory:
+                users:
+                    user:
+                        password: '%env(resolve:USER_PASSWORD)%'
+                        roles: ['ROLE_USER']
+                    admin:
+                        password: '%env(resolve:ADMIN_PASSWORD)%'
+                        roles: ['ROLE_ADMIN']
+        
+        # Fournisseur d'utilisateurs basé sur une entité (décommentez cette section si vous utilisez une base de données)
+        # app_user_provider:
+        #     entity:
+        #         class: App\Entity\User
+        #         property: email
 
+    # Pare-feux (firewalls)
     firewalls:
+        dev:
+            # Désactiver la sécurité pour les chemins de développement (profiler, WDT, ressources statiques)
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
         main:
+            # Activer la sécurité pour les autres chemins
             lazy: true
-            provider: app_user_provider
-            custom_authenticator: App\Security\UserAuthenticator
+            provider: in_memory  # Utiliser le fournisseur en mémoire pour les exemples
+            custom_authenticators:
+                - App\Security\UserAuthenticator
+            entry_point: App\Security\UserAuthenticator
             form_login:
-                login_path: login
-                check_path: login
+                # Configuration du formulaire d'authentification
+                login_path: app_login
+                check_path: app_login
                 enable_csrf: true
             logout:
-                path: logout
-                # Vous pouvez ajouter une cible après la déconnexion ici, par exemple
-                # target: /
-            entry_point: App\Security\UserAuthenticator
+                # Configuration de la déconnexion
+                path: app_logout
+                target: /
 
+    # Contrôle d'accès (access control)
     access_control:
-        # Permet l'accès anonyme à /home
-        - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # Permet l'accès anonyme à /login
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # Accès restreint à /admin et sous-répertoires aux utilisateurs avec le rôle ROLE_ADMIN
         - { path: ^/admin, roles: ROLE_ADMIN }
-        # Accès restreint aux autres chemins aux utilisateurs authentifiés
-        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
