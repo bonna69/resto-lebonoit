@@ -19,8 +19,8 @@ security:
                 check_path: login
                 enable_csrf: true
             logout:
-                path: admin_logout
-                # Si vous avez une page cible après la déconnexion, spécifiez-la ici
+                path: logout
+                # Vous pouvez ajouter une cible après la déconnexion ici, par exemple
                 # target: /
             entry_point: App\Security\UserAuthenticator
 

@@ -7,18 +7,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route; // Cette ligne est correcte
-use App\Entity\ReservationAdmin;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractDashboardController
 {
-    #[Route('/login', name: 'login')] // Annotation correcte pour Symfony 7.x
-    public function login(): Response
-    {
-        return $this->render('security/login.html.twig');
-    }
-
-    #[Route('/admin', name: 'admin')] // Annotation correcte
+    #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
         return $this->render('admin/dashboard.html.twig');
