@@ -7,7 +7,7 @@ security:
 
     # Fournisseurs d'utilisateurs
     providers:
-        # Fournisseur d'utilisateurs en mémoire
+        # Fournisseur d'utilisateurs en mémoire pour les exemples
         in_memory:
             memory:
                 users:
@@ -17,12 +17,12 @@ security:
                     admin:
                         password: '%env(resolve:ADMIN_PASSWORD)%'
                         roles: ['ROLE_ADMIN']
-        
-        # Fournisseur d'utilisateurs basé sur une entité (décommentez cette section si vous utilisez une base de données)
-        # app_user_provider:
-        #     entity:
-        #         class: App\Entity\User
-        #         property: email
+
+        # Fournisseur d'utilisateurs basé sur une entité (à décommenter si vous utilisez une base de données)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: username
 
     # Pare-feux (firewalls)
     firewalls:
@@ -34,10 +34,9 @@ security:
         main:
             # Activer la sécurité pour les autres chemins
             lazy: true
-            provider: in_memory  # Utiliser le fournisseur en mémoire pour les exemples
+            provider: app_user_provider  # Utiliser le fournisseur basé sur l'entité
             custom_authenticators:
                 - App\Security\UserAuthenticator
-            entry_point: App\Security\UserAuthenticator
             form_login:
                 # Configuration du formulaire d'authentification
                 login_path: app_login
