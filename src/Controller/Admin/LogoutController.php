@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +15,6 @@ class LogoutController extends AbstractController
         // Vous pouvez ajouter du code pour exécuter des actions après la déconnexion si nécessaire
 
         // Redirection vers la page d'accueil ou une autre page
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('app_home_page');
     }
 }

@@ -21,10 +21,14 @@ class CarteController extends AbstractController
         // Find the menu image URL setting
         $menuImageCarte = $carteRepo->findOneBy(['carte_name' => 'menu_image_url']);
         $menuImage = $menuImageCarte ? $menuImageCarte->getCarteValue() : 'assets/images/menu-items/menu.jpg';
+        $firstFeaturedDish = null;
+        $isAdmin = false;
 
         return $this->render('carte/index.html.twig', [
             'menuImage' => $menuImage,
             'cartes' => $cartes,
+            'firstFeaturedDish' => $firstFeaturedDish,
+            'isAdmin' => $isAdmin,
         ]);
     }
 

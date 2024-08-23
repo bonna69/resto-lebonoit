@@ -168,16 +168,10 @@
         </div>
     </div>
 
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('script.js') }}"></script>
-{% endblock %}
-
-<footer class="footer">
+    <footer class="footer">
     <div class="footer-content container">
         <div class="footer-contact">
-            <h3><a href="{{ path('contact') }}">Contactez-nous</a></h3>
+            <h3><a href="{{ path('app_contact') }}">Contactez-nous</a></h3>
             <p>Adresse : 123 Rue Ney, 69006 Lyon</p>
             <p>Téléphone : +33 1 23 45 67 89</p>
             <p>Email : <a href="mailto:contact@lebonoit.fr">contact@lebonoit.fr</a></p>
@@ -209,3 +203,11 @@
         <p>&copy; 2024 <a href="#">Le Bônoit</a>. Tous droits réservés.</p>
     </div>
 </footer>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('script.js') }}"></script>
+{% endblock %}
+
+

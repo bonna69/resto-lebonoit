@@ -31,24 +31,33 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
-            # Activer la sécurité pour les autres chemins
-            lazy: true
-            provider: app_user_provider  # Utiliser le fournisseur basé sur l'entité
-            custom_authenticators:
-                - App\Security\UserAuthenticator
-            form_login:
-                # Configuration du formulaire d'authentification
-                login_path: app_login
-                check_path: app_login
-                enable_csrf: true
-            logout:
-                # Configuration de la déconnexion
-                path: app_logout
-                target: /
+        # main:
+        #     # Activer la sécurité pour les autres chemins
+        #     lazy: true
+        #     provider: app_user_provider  # Utiliser le fournisseur basé sur l'entité
+        #     custom_authenticators:
+        #         - App\Security\UserAuthenticator
+        #     entry_point: App\Security\UserAuthenticator
+        #     form_login:
+        #         # Configuration du formulaire d'authentification
+        #         login_path: app_login
+        #         check_path: app_login
+        #         csrf_parameter: _csrf_token
+        #         csrf_token_id: authenticate
+        #         enable_csrf: true
+        #         default_target_path: app_home_page
+        #     logout:
+        #         # Configuration de la déconnexion
+        #         path: app_logout
+        #         target: app_login
 
     # Contrôle d'accès (access control)
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/menu, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/contact, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/reservation, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/avis, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -1,37 +1,19 @@
-# config/services.yaml
-
 services:
-    # ...
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
 
-    # Déclaration du service UserAuthenticator
     App\Security\UserAuthenticator:
         arguments:
-            - '@router'          # Injection du service Router
-            - '@request_stack'   # Injection du service RequestStack
+            $urlGenerator: '@router'
+            $requestStack: '@request_stack'
 
-    # Déclaration du service pour votre entité User si ce n'est pas déjà fait
-    # Assurez-vous que ce service est correctement configuré pour être utilisé dans la configuration de sécurité
-    App\Repository\UserRepository:
-        autowire: true
-        autoconfigure: true
-        public: false
-
-    # Autres services...
-
-    # Si vous utilisez le provider d'utilisateurs en mémoire pour des tests ou des exemples
-    # et que vous avez défini un fournisseur d'utilisateurs en mémoire
-    in_memory_user_provider:
-        class: Symfony\Component\Security\Core\User\InMemoryUserProvider
-        arguments:
-            - 
-                users:
-                    user:
-                        password: '%env(resolve:USER_PASSWORD)%'
-                        roles: ['ROLE_USER']
-                    admin:
-                        password: '%env(resolve:ADMIN_PASSWORD)%'
-                        roles: ['ROLE_ADMIN']
-
-    # ...
-
-    # Vous pouvez également configurer d'autres services nécessaires à votre application ici
