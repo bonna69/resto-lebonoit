@@ -1,5 +1,4 @@
 <?php
-// src/Repository/MenuRepository.php
 
 namespace App\Repository;
 
@@ -7,6 +6,12 @@ use App\Entity\Menu;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+/**
+ * @method Menu|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Menu|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Menu[]    findAll()
+ * @method Menu[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
 class MenuRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -14,31 +19,32 @@ class MenuRepository extends ServiceEntityRepository
         parent::__construct($registry, Menu::class);
     }
 
-    /**
-     * Récupère toutes les catégories uniques disponibles dans les menus.
-     */
-    public function findAllCategories(): array
-    {
-        $result = $this->createQueryBuilder('m')
-            ->select('m.category')
-            ->distinct()
-            ->getQuery()
-            ->getScalarResult(); // Utilisez getScalarResult() pour obtenir un tableau de chaînes simples
-
-        // Transforme le tableau de tableaux en un tableau de chaînes simples
-        return array_map(fn($row) => $row['category'], $result);
-    }
-
-    /**
-     * Récupère les éléments du menu pour une catégorie spécifiée.
-     */
-    public function findByCategory(string $category): array
+    // /**
+    //  * @return Menu[] Returns an array of Menu objects
+    //  */
+    /*
+    public function findByExampleField($value)
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.category = :category')
-            ->setParameter('category', $category)
-            ->orderBy('m.name', 'ASC')
+            ->andWhere('m.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('m.id', 'ASC')
+            ->setMaxResults(10)
             ->getQuery()
-            ->getResult(); // Assurez-vous que getResult() retourne un tableau d'objets Menu
+            ->getResult()
+        ;
     }
+    */
+
+    /*
+    public function findOneBySomeField($value): ?Menu
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
 }

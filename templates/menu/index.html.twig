@@ -1,48 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Menu{% endblock %}
+{% block title_container %}Affichage d'un menu{% endblock %}
 
-{% block body %}
-<section class="menu" id="menu">
-    <div class="titre">
-        <h2 class="titre-texte">Nos <span>S</span>pécialités</h2>
-        <p>La mer, le soleil, et les saveurs d'Annaba.</p>
-    </div>
-    <div class="contenu">
-        {% if categories is not empty %}
-            {% for category in categories %}
-                <a href="{{ path('menu_category', { 'category': category }) }}" class="box" data-category="{{ category|capitalize }}">
-                    <div class="imbox">
-                        <img src="{{ asset('assets/images/menu-items/' ~ category ~ '/default.jpg') }}" alt="Nos {{ category|capitalize }}">
-                    </div>
-                    <div class="text">
-                        <h3>Nos {{ category|capitalize }}</h3>
-                    </div>
-                </a>
+{% block page_name %}Menu{% endblock %}
+
+{% block inner_container %}
+<div class="container">
+  <div class="row">
+    <div class="col col-5">
+      {% if not menu.produits.empty %}
+        <h2 style="font-family:'poppins';font-weight:700;">{{menu.libelle|upper}}</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Produits</th>
+                <th scope="col">Composants</th>
+                <th scope="col">Prix</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for produit in menu.produits %}
+              <tr>
+                <td>{{produit.libelle}}</td>
+                <td>
+                  {% for composant in produit.composants %}
+                    {{composant}} - 
+                  {% endfor %}
+                </td>
+                <td>{{produit.prix}} F CFA</td>
+              </tr>
             {% endfor %}
-        {% else %}
-            <p>Aucune catégorie disponible.</p>
-        {% endif %}
+            </tbody>
+          </table>
+      {% endif %}
     </div>
-</section>
-
-{% if menus is not empty %}
-    <section class="menu-items">
-        {% for menu in menus %}
-            <div class="menu-item">
-                <h3>{{ menu.name }}</h3>
-                <div class="description">{{ menu.description }}</div>
-                <div class="price">{{ menu.price }} €</div>
-
-                <div class="images">
-                    {% for image in menu.images %}
-                        <img src="{{ asset('assets/images/menu-items/' ~ menu.category ~ '/' ~ image) }}" alt="{{ menu.name }}">
-                    {% endfor %}
-                </div>
-            </div>
-        {% endfor %}
-    </section>
-{% else %}
-    <p>Aucun menu disponible pour cette catégorie.</p>
-{% endif %}
+    <div class="col">
+      <img class="card-img-top" src="../assets/img/menus/{{menu.image}}"  alt="produit" />
+    </div>
+    <div class="col d-flex align-items-end">
+      <div>
+        <a href="{{path('cart_add', {'id':menu.id})}}" type="button" class="w-100 btn btn-dark">Mettre au panier</a>
+        <a href="{{path('catalogue')}}" type="button" class="mt-3 w-100 btn btn-outline-danger">Retour au catalogue</a>
+      </div>    
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -1,52 +1,123 @@
 <?php
+
 namespace App\Entity;
 
 use App\Repository\MenuRepository;
-use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MenuRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass=MenuRepository::class)
+ */
 class Menu
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $libelle;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?float $price = null;
+    /**
+     * @ORM\ManyToMany(targetEntity=Produit::class, inversedBy="menus")
+     */
+    private $produits;
 
-    #[ORM\Column(length: 255)]
-    private ?string $category = null;
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private ?array $images = [];
+    /**
+     * @ORM\ManyToMany(targetEntity=Commande::class, mappedBy="menus")
+     */
+    private $commandes;
 
-    #[ORM\Column(type: Types::BOOLEAN)]
-    private bool $is_available = true;
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="menus")
+     */
+    private $Category;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private \DateTimeImmutable $created_at;
+
+    public function __construct()
+    {
+        $this->produits = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
+    }
+    
+    
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getPrix(): ?int
     {
-        return $this->name;
+        $produits = $this->getProduits();
+        $prix = 0;
+        foreach ($produits as $produit) {
+            $prix += $produit->getPrix();
+        }
+        return $prix;
     }
 
-    public function setName(string $name): static
+    public function getLibelle(): ?string
     {
-        $this->name = $name;
+        return $this->libelle;
+    }
+
+    public function setLibelle(string $libelle): self
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Produit[]
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(Produit $produit): self
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): self
+    {
+        $this->produits->removeElement($produit);
 
         return $this;
     }
@@ -56,83 +127,47 @@ class Menu
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getPrice(): ?float
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
     {
-        return $this->price;
+        return $this->commandes;
     }
 
-    public function setPrice(float $price): static
+    public function addCommande(Commande $commande): self
     {
-        $this->price = $price;
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->addMenu($this);
+        }
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            $commande->removeMenu($this);
+        }
 
         return $this;
     }
 
     public function getCategory(): ?string
     {
-        return $this->category;
+        return $this->Category->getLibelle();
     }
 
-    public function setCategory(string $category): static
+    public function setCategory(?Category $Category): self
     {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    public function getImages(): ?array
-    {
-        return $this->images;
-    }
-
-    public function setImages(?array $images): static
-    {
-        $this->images = $images;
-
-        return $this;
-    }
-
-    public function addImage(string $image): static
-    {
-        $this->images[] = $image;
-
-        return $this;
-    }
-
-    public function removeImage(string $image): static
-    {
-        $this->images = array_filter($this->images, fn($img) => $img !== $image);
-
-        return $this;
-    }
-
-    public function isAvailable(): bool
-    {
-        return $this->is_available;
-    }
-
-    public function setAvailable(bool $is_available): static
-    {
-        $this->is_available = $is_available;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): \DateTimeImmutable
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
-    {
-        $this->created_at = $created_at;
+        $this->Category = $Category;
 
         return $this;
     }
